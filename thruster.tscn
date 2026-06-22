@@ -4,15 +4,53 @@
 [ext_resource type="Script" uid="uid://wxbdw2v2whqx" path="res://thruster_forces.gd" id="2_as1lm"]
 [ext_resource type="Texture2D" uid="uid://d3t17lm7qlfk2" path="res://thruster.png" id="2_bima3"]
 
+[sub_resource type="Gradient" id="Gradient_bima3"]
+offsets = PackedFloat32Array(0, 0.14457831)
+colors = PackedColorArray(1, 1, 1, 1, 18.892157, 18.892157, 18.892157, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_riqys"]
+gradient = SubResource("Gradient_bima3")
+fill = 1
+fill_from = Vector2(0.5, 0.49130434)
+
+[sub_resource type="Curve" id="Curve_qr0ht"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.8089888), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Gradient" id="Gradient_sn0t7"]
+offsets = PackedFloat32Array(0, 0.56790125, 0.99382716)
+colors = PackedColorArray(1, 0.015686275, 0, 1, 1, 0.67058825, 0.6627451, 0.7529412, 1, 1, 1, 0)
+
 [node name="Thruster" unique_id=713508415 instance=ExtResource("1_bda3k")]
 
-[node name="ThrustDirection" type="Marker2D" parent="." index="0" unique_id=1560514406]
+[node name="ThrusterParticles" type="CPUParticles2D" parent="." index="0" unique_id=2144551150]
+position = Vector2(0, 60)
+amount = 11
+texture = SubResource("GradientTexture2D_riqys")
+lifetime = 0.2
+local_coords = true
+emission_shape = 3
+emission_rect_extents = Vector2(20, 1)
+direction = Vector2(0, 1)
+spread = 12.92
+gravity = Vector2(0, 0)
+initial_velocity_min = 564.36
+initial_velocity_max = 841.58
+scale_amount_min = 2.0
+scale_amount_max = 6.0
+scale_amount_curve = SubResource("Curve_qr0ht")
+color = Color(0.99999994, 0.5062767, 0.13964188, 1)
+color_ramp = SubResource("Gradient_sn0t7")
+hue_variation_min = -0.38
+hue_variation_max = 0.8
+
+[node name="ThrustDirection" type="Marker2D" parent="." index="1" unique_id=1560514406]
 position = Vector2(0, -20)
 
-[node name="ThrustForces" type="Node2D" parent="." index="1" unique_id=1565694415]
+[node name="ThrustForces" type="Node2D" parent="." index="2" unique_id=1565694415]
 script = ExtResource("2_as1lm")
 
-[node name="BaseShipSprite" parent="." index="2" unique_id=1416035950]
+[node name="BaseShipSprite" parent="." index="3" unique_id=1416035950]
 texture_filter = 1
 texture = ExtResource("2_bima3")
 
