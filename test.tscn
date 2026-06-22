@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://chiuclcqwe04d"]
+
+[ext_resource type="PackedScene" uid="uid://d1ijkjsfx8hci" path="res://ship.tscn" id="1_37kl0"]
+
+[node name="test" type="Node2D" unique_id=2056172613]
+
+[node name="Ship" parent="." unique_id=1069543584 instance=ExtResource("1_37kl0")]
+gravity_scale = 0.0

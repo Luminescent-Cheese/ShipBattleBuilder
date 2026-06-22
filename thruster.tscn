@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://bqt8aindfhcmj"]
+
+[ext_resource type="PackedScene" uid="uid://bnvbyi3c63nr1" path="res://ship_part.tscn" id="1_bda3k"]
+[ext_resource type="Texture2D" uid="uid://d3t17lm7qlfk2" path="res://thruster.png" id="2_bima3"]
+
+[node name="Thruster" unique_id=713508415 instance=ExtResource("1_bda3k")]
+
+[node name="BaseShipSprite" parent="." index="0" unique_id=1416035950]
+texture_filter = 1
+texture = ExtResource("2_bima3")
