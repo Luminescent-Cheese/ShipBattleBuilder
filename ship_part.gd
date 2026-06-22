@@ -20,8 +20,9 @@ func place():
 			placeable = false
 		if Input.is_action_just_pressed("rotate"):
 			rotation += PI/2
+			if snappedf(rotation,0.01) == snappedf(2*PI,0.01):
+				rotation = 0.0
 
 
 func _on_thruster_forces_thrust(ThrustDirection) -> void:
-	print(self.position.direction_to(ThrustDirection))
 	thruster_on.emit(self.global_position.direction_to(ThrustDirection)*100,position)
