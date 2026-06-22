@@ -4,3 +4,5 @@
 
 [node name="Ship" type="RigidBody2D" unique_id=1069543584]
 script = ExtResource("1_l3rv8")
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1714904909]
