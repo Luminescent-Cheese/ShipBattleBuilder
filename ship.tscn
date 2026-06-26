@@ -14,8 +14,9 @@ linear_damp_mode = 1
 angular_damp_mode = 1
 script = ExtResource("1_l3rv8")
 
-[node name="Camera2D" type="Camera2D" parent="." unique_id=1714904909]
+[node name="ShipCamera" type="Camera2D" parent="." unique_id=1714904909]
 zoom = Vector2(0.5, 0.5)
+position_smoothing_enabled = true
 
 [node name="CenterOfMass" type="Sprite2D" parent="." unique_id=2033252112]
 z_index = 1

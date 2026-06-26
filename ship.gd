@@ -3,6 +3,8 @@ extends RigidBody2D
 @onready var Ship_Part = preload("res://ship_part.tscn")
 @onready var Thruster = preload("res://thruster.tscn")
 
+@onready var shipCamera = $ShipCamera
+
 var force_dir = [Vector2.ZERO]
 var force_pos = [Vector2.ZERO]
 
@@ -18,7 +20,10 @@ func _process(delta: float) -> void:
 		New_thruster.add_collision.connect(add_collision_shape)
 		
 	$CenterOfMass.position = Vector2(0,0)
-	
+	#always lerps camera back to 0,0 whenever it leaves smoothly
+	var weight: float = 1.0 - exp(-10 * delta)
+	shipCamera.position = shipCamera.position.lerp(Vector2.ZERO,weight)
+
 func add_collision_shape(set_position):
 	var collision_shape = CollisionShape2D.new()
 	collision_shape.position = set_position
@@ -53,7 +58,6 @@ func calculate_center_of_mass():
 	averagePosition /= positions.size()
 	#makes it so that point becomes (0,0) locally
 	for child in get_children():
-		if not child is Camera2D:
 			child.position -= averagePosition
 	#changes global position so it looks like no movement occured
 	global_position += averagePosition
