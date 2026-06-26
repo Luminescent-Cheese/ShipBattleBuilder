@@ -5,10 +5,18 @@ extends RigidBody2D
 
 @onready var shipCamera = $ShipCamera
 
+@export var speed:float
+@export var current_torque: float
+
 var force_dir = [Vector2.ZERO]
 var force_pos = [Vector2.ZERO]
 
 func _process(delta: float) -> void:
+	#used to display that on the hud (future plan)
+	speed = linear_velocity.length()
+	current_torque = angular_velocity
+	
+	print(speed," : ",current_torque)
 	if Input.is_action_just_pressed("test"):
 		var New_part = Ship_Part.instantiate()
 		add_child(New_part)

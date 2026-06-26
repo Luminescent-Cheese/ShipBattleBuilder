@@ -26,7 +26,5 @@ func place():
 
 
 func _on_thruster_forces_thrust(ThrustDirection) -> void:
-	thruster_on.emit(transform.y*-1000,global_position-get_parent().global_position)
-	$"thrust center".global_position = global_position
-	$"thrust direction".global_position = (transform.y)*200
+	thruster_on.emit(transform.y*-1250,global_position-get_parent().global_position)
 	#print("thrust center = %s, dir = %s" % [$"thrust center".global_position, $"thrust direction".global_position])
