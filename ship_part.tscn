@@ -1,10 +1,11 @@
 [gd_scene format=3 uid="uid://bnvbyi3c63nr1"]
 
-[ext_resource type="Texture2D" uid="uid://c3rxygp4bjcrv" path="res://icon.svg" id="1_5iij5"]
 [ext_resource type="Script" uid="uid://ymvgvf1xlyol" path="res://ship_part.gd" id="1_epihn"]
+[ext_resource type="Texture2D" uid="uid://b8vuvku0ywpmg" path="res://basic body.png" id="2_epihn"]
 
 [node name="ShipPart" type="Node2D" unique_id=243587431]
 script = ExtResource("1_epihn")
 
 [node name="BaseShipSprite" type="Sprite2D" parent="." unique_id=1416035950]
-texture = ExtResource("1_5iij5")
+texture_filter = 1
+texture = ExtResource("2_epihn")
