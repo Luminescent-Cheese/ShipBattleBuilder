@@ -3,6 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://bnvbyi3c63nr1" path="res://ship_part.tscn" id="1_bda3k"]
 [ext_resource type="Script" uid="uid://wxbdw2v2whqx" path="res://thruster_forces.gd" id="2_as1lm"]
 [ext_resource type="Texture2D" uid="uid://d3t17lm7qlfk2" path="res://thruster.png" id="2_bima3"]
+[ext_resource type="Texture2D" uid="uid://c3rxygp4bjcrv" path="res://icon.svg" id="4_as1lm"]
 
 [sub_resource type="Gradient" id="Gradient_bima3"]
 offsets = PackedFloat32Array(0, 0.14457831)
@@ -53,5 +54,17 @@ script = ExtResource("2_as1lm")
 [node name="BaseShipSprite" parent="." index="3" unique_id=1416035950]
 texture_filter = 1
 texture = ExtResource("2_bima3")
+
+[node name="thrust center" type="Sprite2D" parent="." index="4" unique_id=1360516702]
+modulate = Color(0.089197926, 0.76577485, 7.70092e-07, 1)
+position = Vector2(-116.5, 117.5)
+scale = Vector2(0.1171875, 0.1328125)
+texture = ExtResource("4_as1lm")
+
+[node name="thrust direction" type="Sprite2D" parent="." index="5" unique_id=1642951936]
+modulate = Color(1, 0, 0, 1)
+position = Vector2(-114.5, 170.5)
+scale = Vector2(0.14843754, 0.14843747)
+texture = ExtResource("4_as1lm")
 
 [connection signal="thrust" from="ThrustForces" to="." method="_on_thruster_forces_thrust"]

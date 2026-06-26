@@ -3,7 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://c3rxygp4bjcrv" path="res://icon.svg" id="1_5iij5"]
 [ext_resource type="Script" uid="uid://ymvgvf1xlyol" path="res://ship_part.gd" id="1_epihn"]
 
-[node name="ShipPart" type="Node2D" unique_id=713508415]
+[node name="ShipPart" type="Node2D" unique_id=243587431]
 script = ExtResource("1_epihn")
 
 [node name="BaseShipSprite" type="Sprite2D" parent="." unique_id=1416035950]
