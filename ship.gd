@@ -19,7 +19,7 @@ func _process(delta: float) -> void:
 	speed = linear_velocity.length()
 	current_torque = angular_velocity
 	
-	print(speed," : ",current_torque)
+	#print(speed," : ",current_torque)
 	if canPlace:
 		if Input.is_action_just_pressed("test"):
 			canPlace = false
@@ -56,11 +56,14 @@ func on_thrust(force_direction,force_position) -> void:
 	force_pos.append(force_position)
 
 func _integrate_forces(state: PhysicsDirectBodyState2D) -> void:
+	print(force_pos)
 	for i in force_dir.size():
 		apply_force(force_dir[i],force_pos[i])
 	if force_dir.size() > 1:
 		force_dir.clear()
 		force_pos.clear()
+		force_dir.append(Vector2.ZERO)
+		force_pos.append(Vector2.ZERO)
 
 func calculate_center_of_mass():
 	var positions = []
