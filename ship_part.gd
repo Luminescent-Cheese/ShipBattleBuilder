@@ -8,6 +8,7 @@ var TILE_WIDTH
 
 signal thruster_on
 signal add_collision
+signal justPlaced
 func _ready() -> void:
 	TILE_WIDTH = tileSprite.get_rect().size.x
 
@@ -22,6 +23,7 @@ func place():
 			placeable = false
 			tileSprite.self_modulate = Color(1.0, 1.0, 1.0, 1.0)
 			add_collision.emit(position)
+			justPlaced.emit()
 		if Input.is_action_just_pressed("rotate"):
 			rotation += PI/2
 			if snappedf(rotation,0.01) == snappedf(2*PI,0.01):
