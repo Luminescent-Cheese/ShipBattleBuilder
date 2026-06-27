@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://bnvbyi3c63nr1" path="res://ship_part.tscn" id="1_bda3k"]
 [ext_resource type="Script" uid="uid://wxbdw2v2whqx" path="res://thruster_forces.gd" id="2_as1lm"]
-[ext_resource type="Texture2D" uid="uid://d3t17lm7qlfk2" path="res://thruster.png" id="2_bima3"]
+[ext_resource type="Texture2D" uid="uid://dhdt0k0n1hkhv" path="res://thruster (2).png" id="3_bima3"]
 
 [sub_resource type="Gradient" id="Gradient_bima3"]
 offsets = PackedFloat32Array(0, 0.14457831)
@@ -20,6 +20,10 @@ point_count = 2
 [sub_resource type="Gradient" id="Gradient_sn0t7"]
 offsets = PackedFloat32Array(0, 0.56790125, 0.99382716)
 colors = PackedColorArray(1, 0.015686275, 0, 1, 1, 0.67058825, 0.6627451, 0.7529412, 1, 1, 1, 0)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_as1lm"]
+resource_local_to_scene = true
+size = Vector2(124, 124)
 
 [node name="Thruster" unique_id=713508415 instance=ExtResource("1_bda3k")]
 
@@ -52,6 +56,9 @@ position = Vector2(0, -20)
 script = ExtResource("2_as1lm")
 
 [node name="BaseShipSprite" parent="." index="3" unique_id=1416035950]
-texture = ExtResource("2_bima3")
+texture = ExtResource("3_bima3")
+
+[node name="CollisionShape2D" parent="CheckIfValid" parent_id_path=PackedInt32Array(815796589) index="0" unique_id=1649036300]
+shape = SubResource("RectangleShape2D_as1lm")
 
 [connection signal="thrust" from="ThrustForces" to="." method="_on_thruster_forces_thrust"]

@@ -4,6 +4,10 @@
 [ext_resource type="Script" uid="uid://bnl5kdmnpg1o2" path="res://fuel_tank_logic.gd" id="2_kgbsh"]
 [ext_resource type="Texture2D" uid="uid://r4ih00eykd1a" path="res://fuel tile.png" id="2_nq3p3"]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nq3p3"]
+resource_local_to_scene = true
+size = Vector2(124, 124)
+
 [node name="FuelTile" unique_id=243587431 instance=ExtResource("1_f87b2")]
 
 [node name="FuelTankLogic" type="Node2D" parent="." index="0" unique_id=2106471595]
@@ -11,3 +15,6 @@ script = ExtResource("2_kgbsh")
 
 [node name="BaseShipSprite" parent="." index="1" unique_id=1416035950]
 texture = ExtResource("2_nq3p3")
+
+[node name="CollisionShape2D" parent="CheckIfValid" parent_id_path=PackedInt32Array(815796589) index="0" unique_id=1649036300]
+shape = SubResource("RectangleShape2D_nq3p3")

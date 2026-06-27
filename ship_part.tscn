@@ -4,7 +4,8 @@
 [ext_resource type="Texture2D" uid="uid://bmpyxpqiofkfm" path="res://basic body2.png" id="2_epihn"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bhunq"]
-size = Vector2(76, 76)
+resource_local_to_scene = true
+size = Vector2(124, 124)
 
 [node name="ShipPart" type="Node2D" unique_id=243587431]
 script = ExtResource("1_epihn")

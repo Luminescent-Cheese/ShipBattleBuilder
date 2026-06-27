@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://bnxujhykk358b" path="res://ship.gd" id="1_l3rv8"]
 [ext_resource type="Script" uid="uid://df8jd6m0wl5gi" path="res://ship_camera.gd" id="2_c3vuw"]
 [ext_resource type="Texture2D" uid="uid://dhxmcdpgiulrw" path="res://Center of gravity.png" id="2_v4325"]
-[ext_resource type="Texture2D" uid="uid://bmpyxpqiofkfm" path="res://basic body2.png" id="4_c3vuw"]
+[ext_resource type="Texture2D" uid="uid://cd3oqmtqa078l" path="res://core.png" id="4_c3vuw"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_riqys"]
 size = Vector2(128, 128)

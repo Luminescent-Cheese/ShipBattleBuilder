@@ -30,7 +30,7 @@ func place():
 func _on_thruster_forces_thrust(ThrustDirection) -> void:
 	#makes sure craft has fuel
 	if get_parent().fuel > 0:
-		thruster_on.emit(transform.y*-1250,global_position-get_parent().global_position)
+		thruster_on.emit(transform.y*-1500,global_position-get_parent().global_position)
 		get_parent().fuel -= 1
 
 
