@@ -2,6 +2,7 @@ extends Node2D
 
 var TILE_WIDTH
 @onready var placeable = true
+@onready var clickable = false
 @onready var overlap = false
 @onready var tileSprite = $BaseShipSprite
 
@@ -44,3 +45,13 @@ func _on_check_if_valid_body_exited(body: Node2D) -> void:
 	if placeable:
 		overlap = false
 		tileSprite.self_modulate = Color(0.0, 1.0, 0.376, 1.0)
+
+#checks if its been clicked
+func _on_check_if_valid_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
+	if event is InputEventMouseButton and event.pressed:
+		if event.button_index == MOUSE_BUTTON_LEFT:
+			if clickable:
+				print(self)
+			else:
+				clickable = true
+	#makes sure that it isn't opened when first spawned in

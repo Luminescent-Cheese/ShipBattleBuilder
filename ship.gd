@@ -5,9 +5,13 @@ extends RigidBody2D
 @onready var Fuel = preload("res://fuel_tile.tscn")
 @onready var shipCamera = $ShipCamera
 
+#Hud Nodes
+@onready var Fuel_Label = $Hud/HudStats/Fuel/FuelBar/FuelBarLabel
+@onready var Fuel_Bar = $Hud/HudStats/Fuel/FuelBar
 @export var speed:float
 @export var current_torque: float
-@export var fuel: float
+@export var fuel: float = 0.0
+@export var fuelMax:float = 0.0
 
 var force_dir = [Vector2.ZERO]
 var force_pos = [Vector2.ZERO]
@@ -16,10 +20,14 @@ var force_pos = [Vector2.ZERO]
 var canPlace = true
 
 func _process(delta: float) -> void:
-	print(fuel)
+
 	#used to display that on the hud (future plan)
 	speed = linear_velocity.length()
 	current_torque = angular_velocity
+	
+	Fuel_Label.text = str(int(fuel))+"/"+str(int(fuelMax))
+	Fuel_Bar.max_value = fuelMax
+	Fuel_Bar.value = fuel
 	
 	#print(speed," : ",current_torque)
 	if canPlace:
@@ -83,6 +91,7 @@ func calculate_center_of_mass():
 	averagePosition /= positions.size()
 	#makes it so that point becomes (0,0) locally
 	for child in get_children():
-			child.position -= averagePosition
+			if not child is CanvasLayer:
+				child.position -= averagePosition
 	#changes global position so it looks like no movement occured
 	global_position += averagePosition

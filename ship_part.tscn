@@ -21,3 +21,4 @@ shape = SubResource("RectangleShape2D_bhunq")
 
 [connection signal="body_entered" from="CheckIfValid" to="." method="_on_check_if_valid_body_entered"]
 [connection signal="body_exited" from="CheckIfValid" to="." method="_on_check_if_valid_body_exited"]
+[connection signal="input_event" from="CheckIfValid" to="." method="_on_check_if_valid_input_event"]

@@ -4,9 +4,25 @@
 [ext_resource type="Script" uid="uid://df8jd6m0wl5gi" path="res://ship_camera.gd" id="2_c3vuw"]
 [ext_resource type="Texture2D" uid="uid://dhxmcdpgiulrw" path="res://Center of gravity.png" id="2_v4325"]
 [ext_resource type="Texture2D" uid="uid://cd3oqmtqa078l" path="res://core.png" id="4_c3vuw"]
+[ext_resource type="FontFile" uid="uid://dkd71wnjyxkyj" path="res://upheavtt.ttf" id="5_78o8j"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_riqys"]
 size = Vector2(128, 128)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_78o8j"]
+bg_color = Color(7.219613e-08, 0.07174174, 0.1275509, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+expand_margin_left = 3.0
+expand_margin_top = 3.0
+expand_margin_right = 3.0
+expand_margin_bottom = 3.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xpsff"]
+bg_color = Color(0.8692163, 0.37501356, 3.85046e-07, 1)
+border_color = Color(0.8557532, 0.37060598, 1.732707e-06, 1)
 
 [node name="Ship" type="RigidBody2D" unique_id=1069543584]
 mass = 10.0
@@ -33,3 +49,52 @@ texture = ExtResource("4_c3vuw")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=228976419]
 shape = SubResource("RectangleShape2D_riqys")
+
+[node name="Hud" type="CanvasLayer" parent="." unique_id=1224294211]
+
+[node name="HudStats" type="Control" parent="Hud" unique_id=2008738504]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 19.0
+offset_top = 13.0
+offset_right = 420.0
+offset_bottom = 132.0
+mouse_filter = 2
+
+[node name="Fuel" type="Label" parent="Hud/HudStats" unique_id=1002162136]
+layout_mode = 0
+offset_left = -12.0
+offset_top = -12.0
+offset_right = 48.0
+offset_bottom = 20.0
+theme_override_fonts/font = ExtResource("5_78o8j")
+theme_override_font_sizes/font_size = 23
+text = "FUEL:"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="FuelBar" type="ProgressBar" parent="Hud/HudStats/Fuel" unique_id=1041469745]
+layout_mode = 0
+offset_left = 65.0
+offset_top = 8.0
+offset_right = 345.0
+offset_bottom = 26.0
+theme_override_styles/background = SubResource("StyleBoxFlat_78o8j")
+theme_override_styles/fill = SubResource("StyleBoxFlat_xpsff")
+show_percentage = false
+
+[node name="FuelBarLabel" type="Label" parent="Hud/HudStats/Fuel/FuelBar" unique_id=851280820]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("5_78o8j")
+horizontal_alignment = 1
+
+[node name="Part Details" type="Control" parent="Hud" unique_id=37884546]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
