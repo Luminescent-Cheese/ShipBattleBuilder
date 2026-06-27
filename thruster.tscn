@@ -25,6 +25,7 @@ colors = PackedColorArray(1, 0.015686275, 0, 1, 1, 0.67058825, 0.6627451, 0.7529
 
 [node name="ThrusterParticles" type="CPUParticles2D" parent="." index="0" unique_id=2144551150]
 position = Vector2(0, 60)
+emitting = false
 amount = 11
 texture = SubResource("GradientTexture2D_riqys")
 lifetime = 0.2

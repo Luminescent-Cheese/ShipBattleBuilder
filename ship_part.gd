@@ -28,8 +28,10 @@ func place():
 
 
 func _on_thruster_forces_thrust(ThrustDirection) -> void:
-	thruster_on.emit(transform.y*-1250,global_position-get_parent().global_position)
-	#print("thrust center = %s, dir = %s" % [$"thrust center".global_position, $"thrust direction".global_position])
+	#makes sure craft has fuel
+	if get_parent().fuel > 0:
+		thruster_on.emit(transform.y*-1250,global_position-get_parent().global_position)
+		get_parent().fuel -= 1
 
 
 func _on_check_if_valid_body_entered(body: Node2D) -> void:
@@ -41,4 +43,4 @@ func _on_check_if_valid_body_entered(body: Node2D) -> void:
 func _on_check_if_valid_body_exited(body: Node2D) -> void:
 	if placeable:
 		overlap = false
-		tileSprite.self_modulate = Color(0.0, 0.984, 0.322)
+		tileSprite.self_modulate = Color(0.0, 1.0, 0.376, 1.0)

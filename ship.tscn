@@ -1,9 +1,9 @@
 [gd_scene format=3 uid="uid://d1ijkjsfx8hci"]
 
 [ext_resource type="Script" uid="uid://bnxujhykk358b" path="res://ship.gd" id="1_l3rv8"]
-[ext_resource type="Texture2D" uid="uid://c3rxygp4bjcrv" path="res://icon.svg" id="2_4cq66"]
 [ext_resource type="Script" uid="uid://df8jd6m0wl5gi" path="res://ship_camera.gd" id="2_c3vuw"]
 [ext_resource type="Texture2D" uid="uid://dhxmcdpgiulrw" path="res://Center of gravity.png" id="2_v4325"]
+[ext_resource type="Texture2D" uid="uid://bmpyxpqiofkfm" path="res://basic body2.png" id="4_c3vuw"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_riqys"]
 size = Vector2(128, 128)
@@ -21,13 +21,15 @@ zoom = Vector2(0.5, 0.5)
 script = ExtResource("2_c3vuw")
 
 [node name="CenterOfMass" type="Sprite2D" parent="." unique_id=2033252112]
+modulate = Color(1, 1, 1, 0.74509805)
 z_index = 1
 texture_filter = 1
 position = Vector2(-85, -49.5)
 texture = ExtResource("2_v4325")
 
 [node name="Icon" type="Sprite2D" parent="." unique_id=824534812]
-texture = ExtResource("2_4cq66")
+texture_filter = 1
+texture = ExtResource("4_c3vuw")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=228976419]
 shape = SubResource("RectangleShape2D_riqys")

@@ -2,11 +2,12 @@ extends RigidBody2D
 
 @onready var Ship_Part = preload("res://ship_part.tscn")
 @onready var Thruster = preload("res://thruster.tscn")
-
+@onready var Fuel = preload("res://fuel_tile.tscn")
 @onready var shipCamera = $ShipCamera
 
 @export var speed:float
 @export var current_torque: float
+@export var fuel: float
 
 var force_dir = [Vector2.ZERO]
 var force_pos = [Vector2.ZERO]
@@ -15,6 +16,7 @@ var force_pos = [Vector2.ZERO]
 var canPlace = true
 
 func _process(delta: float) -> void:
+	print(fuel)
 	#used to display that on the hud (future plan)
 	speed = linear_velocity.length()
 	current_torque = angular_velocity
@@ -32,6 +34,11 @@ func _process(delta: float) -> void:
 			add_child(New_thruster)
 			New_thruster.thruster_on.connect( on_thrust)
 			New_thruster.add_collision.connect(add_collision_shape)
+		if Input.is_action_just_pressed("test3"):
+			canPlace = false
+			var New_fuel = Fuel.instantiate()
+			add_child(New_fuel)
+			New_fuel.add_collision.connect(add_collision_shape)
 			
 	$CenterOfMass.position = Vector2(0,0)
 	#always lerps camera back to 0,0 whenever it leaves smoothly
@@ -56,7 +63,6 @@ func on_thrust(force_direction,force_position) -> void:
 	force_pos.append(force_position)
 
 func _integrate_forces(state: PhysicsDirectBodyState2D) -> void:
-	print(force_pos)
 	for i in force_dir.size():
 		apply_force(force_dir[i],force_pos[i])
 	if force_dir.size() > 1:
