@@ -3,9 +3,20 @@
 [ext_resource type="Script" uid="uid://ymvgvf1xlyol" path="res://ship_part.gd" id="1_epihn"]
 [ext_resource type="Texture2D" uid="uid://b8vuvku0ywpmg" path="res://basic body.png" id="2_epihn"]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bhunq"]
+size = Vector2(76, 76)
+
 [node name="ShipPart" type="Node2D" unique_id=243587431]
 script = ExtResource("1_epihn")
 
 [node name="BaseShipSprite" type="Sprite2D" parent="." unique_id=1416035950]
 texture_filter = 1
 texture = ExtResource("2_epihn")
+
+[node name="CheckIfValid" type="Area2D" parent="." unique_id=815796589]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CheckIfValid" unique_id=1649036300]
+shape = SubResource("RectangleShape2D_bhunq")
+
+[connection signal="body_entered" from="CheckIfValid" to="." method="_on_check_if_valid_body_entered"]
+[connection signal="body_exited" from="CheckIfValid" to="." method="_on_check_if_valid_body_exited"]

@@ -1,6 +1,7 @@
 extends Camera2D
 @onready var camera = $"."
 @onready var targetZoom = Vector2(0.6,0.6)
+
 #controls player camera movements (pan + zoom)
 func _input(event: InputEvent) -> void:
 	#changes target zoom (scroll-wheel mouse)
