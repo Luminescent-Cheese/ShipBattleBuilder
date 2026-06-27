@@ -11,5 +11,10 @@ position = Vector2(305, 145.99991)
 scale = Vector2(52.57812, 29.3125)
 texture = ExtResource("2_8uh7m")
 
+[node name="Icon2" type="Sprite2D" parent="." unique_id=512538968]
+modulate = Color(0, 0.4862745, 1, 1)
+position = Vector2(313.00003, -3615)
+scale = Vector2(52.57812, 29.3125)
+texture = ExtResource("2_8uh7m")
+
 [node name="Ship" parent="." unique_id=1069543584 instance=ExtResource("1_37kl0")]
-gravity_scale = 0.0

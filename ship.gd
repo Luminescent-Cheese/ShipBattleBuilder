@@ -11,28 +11,36 @@ extends RigidBody2D
 var force_dir = [Vector2.ZERO]
 var force_pos = [Vector2.ZERO]
 
+#makes it so you can't place multiple things at once
+var canPlace = true
+
 func _process(delta: float) -> void:
 	#used to display that on the hud (future plan)
 	speed = linear_velocity.length()
 	current_torque = angular_velocity
 	
 	print(speed," : ",current_torque)
-	if Input.is_action_just_pressed("test"):
-		var New_part = Ship_Part.instantiate()
-		add_child(New_part)
-		New_part.add_collision.connect(add_collision_shape)
-	if Input.is_action_just_pressed("test2"):
-		var New_thruster = Thruster.instantiate()
-		add_child(New_thruster)
-		New_thruster.thruster_on.connect( on_thrust)
-		New_thruster.add_collision.connect(add_collision_shape)
-		
+	if canPlace:
+		if Input.is_action_just_pressed("test"):
+			canPlace = false
+			var New_part = Ship_Part.instantiate()
+			add_child(New_part)
+			New_part.add_collision.connect(add_collision_shape)
+		if Input.is_action_just_pressed("test2"):
+			canPlace = false
+			var New_thruster = Thruster.instantiate()
+			add_child(New_thruster)
+			New_thruster.thruster_on.connect( on_thrust)
+			New_thruster.add_collision.connect(add_collision_shape)
+			
 	$CenterOfMass.position = Vector2(0,0)
 	#always lerps camera back to 0,0 whenever it leaves smoothly
 	var weight: float = 1.0 - exp(-10 * delta)
 	shipCamera.position = shipCamera.position.lerp(Vector2.ZERO,weight)
 
 func add_collision_shape(set_position):
+	#probably should get a better place to put that canPlace in the future
+	canPlace = true
 	var collision_shape = CollisionShape2D.new()
 	collision_shape.position = set_position
 	collision_shape.shape = RectangleShape2D.new()
