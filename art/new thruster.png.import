@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dhxmcdpgiulrw"
-path="res://.godot/imported/Center of gravity.png-cd7e5f0682ce41d7472d74fa5a6099a8.ctex"
+uid="uid://do7gag750t6h6"
+path="res://.godot/imported/new thruster.png-df4e18404801beb318e5d6e740d4156e.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Center of gravity.png"
-dest_files=["res://.godot/imported/Center of gravity.png-cd7e5f0682ce41d7472d74fa5a6099a8.ctex"]
+source_file="res://art/new thruster.png"
+dest_files=["res://.godot/imported/new thruster.png-df4e18404801beb318e5d6e740d4156e.ctex"]
 
 [params]
 

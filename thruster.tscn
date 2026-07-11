@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://bnvbyi3c63nr1" path="res://ship_part.tscn" id="1_bda3k"]
 [ext_resource type="Script" uid="uid://wxbdw2v2whqx" path="res://thruster_forces.gd" id="2_as1lm"]
-[ext_resource type="Texture2D" uid="uid://do7gag750t6h6" path="res://new thruster.png" id="3_bima3"]
+[ext_resource type="Texture2D" uid="uid://do7gag750t6h6" path="res://art/new thruster.png" id="3_bima3"]
 
 [sub_resource type="Gradient" id="Gradient_bima3"]
 offsets = PackedFloat32Array(0, 0.14457831)

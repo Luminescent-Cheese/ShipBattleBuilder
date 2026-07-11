@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cd3oqmtqa078l"
-path="res://.godot/imported/core.png-cdbba7d328392c507163f4e6ba39c6bb.ctex"
+uid="uid://dhxmcdpgiulrw"
+path="res://.godot/imported/Center of gravity.png-1b0981b6bcbc0b149dbf9ed98326f69a.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://core.png"
-dest_files=["res://.godot/imported/core.png-cdbba7d328392c507163f4e6ba39c6bb.ctex"]
+source_file="res://art/Center of gravity.png"
+dest_files=["res://.godot/imported/Center of gravity.png-1b0981b6bcbc0b149dbf9ed98326f69a.ctex"]
 
 [params]
 
