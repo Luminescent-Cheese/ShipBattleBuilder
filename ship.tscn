@@ -103,6 +103,7 @@ offset_bottom = 512.0
 
 [node name="PanelContainer" type="PanelContainer" parent="Hud/Part Details" unique_id=2078769081]
 layout_mode = 0
-offset_left = 42.0
-offset_right = 263.0
-offset_bottom = 500.0
+offset_left = 418.0
+offset_top = 44.0
+offset_right = 639.0
+offset_bottom = 544.0

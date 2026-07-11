@@ -62,5 +62,6 @@ texture = ExtResource("3_bima3")
 shape = SubResource("RectangleShape2D_bima3")
 
 [connection signal="add_collision" from="." to="ThrustForces" method="_on_thruster_add_collision"]
+[connection signal="clicked" from="." to="ThrustForces" method="_on_thruster_clicked"]
 [connection signal="justPlaced" from="." to="ThrustForces" method="_on_thruster_just_placed"]
 [connection signal="thrust" from="ThrustForces" to="." method="_on_thruster_forces_thrust"]

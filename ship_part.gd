@@ -9,6 +9,7 @@ var TILE_WIDTH
 signal thruster_on
 signal add_collision
 signal justPlaced
+signal clicked
 func _ready() -> void:
 	TILE_WIDTH = tileSprite.get_rect().size.x
 
@@ -53,7 +54,7 @@ func _on_check_if_valid_input_event(viewport: Node, event: InputEvent, shape_idx
 	if event is InputEventMouseButton and event.pressed:
 		if event.button_index == MOUSE_BUTTON_LEFT:
 			if clickable:
-				print(self)
+				clicked.emit()
 			else:
 				clickable = true
 	#makes sure that it isn't opened when first spawned in
