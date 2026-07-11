@@ -1,11 +1,12 @@
 extends Node2D
 
 var TILE_WIDTH
-@onready var placeable = true
+@export var placeable = true
 @onready var clickable = false
 @onready var overlap = false
 @onready var tileSprite = $BaseShipSprite
-
+@onready var SurrondingCheckTimer = $SurroundingTileCheck/SurrondingCheckTimer
+@onready var SurrondingCheckCode = $SurroundingTileCheck
 signal thruster_on
 signal add_collision
 signal justPlaced
@@ -16,11 +17,16 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	place()
 
-
 func place():
 	if placeable:
+		#checks if the tiles position has changed since last frame
+		var oldGlobalPosition = global_position
 		global_position = get_global_mouse_position().snapped(Vector2(TILE_WIDTH,TILE_WIDTH))
-		if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT) and overlap == false:
+		if not overlap and SurrondingCheckCode.ValidPlacement:
+			tileSprite.self_modulate = Color(0.0, 1.0, 0.376, 1.0)
+		else:
+			tileSprite.self_modulate = Color(1.0, 0.0, 0.0, 1.0)
+		if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT) and overlap == false and SurrondingCheckCode.ValidPlacement:
 			placeable = false
 			tileSprite.self_modulate = Color(1.0, 1.0, 1.0, 1.0)
 			add_collision.emit(position)
@@ -29,8 +35,9 @@ func place():
 			rotation += PI/2
 			if snappedf(rotation,0.01) == snappedf(2*PI,0.01):
 				rotation = 0.0
-
-
+			SurrondingCheckTimer.start()
+		if global_position != oldGlobalPosition:
+			SurrondingCheckTimer.start()
 func _on_thruster_forces_thrust(ThrustDirection) -> void:
 	#makes sure craft has fuel
 	if get_parent().fuel > 0:
@@ -42,13 +49,11 @@ func _on_thruster_forces_thrust(ThrustDirection) -> void:
 func _on_check_if_valid_body_entered(body: Node2D) -> void:
 	if placeable:
 		overlap = true
-		tileSprite.self_modulate = Color(1.0, 0.0, 0.0, 1.0)
 
 
 func _on_check_if_valid_body_exited(body: Node2D) -> void:
 	if placeable:
 		overlap = false
-		tileSprite.self_modulate = Color(0.0, 1.0, 0.376, 1.0)
 
 #checks if its been clicked
 func _on_check_if_valid_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:

@@ -2,10 +2,19 @@
 
 [ext_resource type="Script" uid="uid://ymvgvf1xlyol" path="res://ship_part.gd" id="1_epihn"]
 [ext_resource type="Texture2D" uid="uid://bmpyxpqiofkfm" path="res://basic body2.png" id="2_epihn"]
+[ext_resource type="Script" uid="uid://b1eufy7n8bf7j" path="res://surrounding_tile_check.gd" id="3_nwga8"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bhunq"]
 resource_local_to_scene = true
 size = Vector2(124, 124)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_riqys"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_sn0t7"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6f8o3"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qr0ht"]
 
 [node name="ShipPart" type="Node2D" unique_id=243587431]
 script = ExtResource("1_epihn")
@@ -19,6 +28,50 @@ texture = ExtResource("2_epihn")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CheckIfValid" unique_id=1649036300]
 shape = SubResource("RectangleShape2D_bhunq")
 
+[node name="SurroundingTileCheck" type="Node2D" parent="." unique_id=574259571]
+script = ExtResource("3_nwga8")
+Top = 2
+Bottom = 2
+Right = 2
+Left = 2
+
+[node name="SurrondingCheckTimer" type="Timer" parent="SurroundingTileCheck" unique_id=1369553166]
+wait_time = 0.05
+one_shot = true
+
+[node name="Top" type="Area2D" parent="SurroundingTileCheck" unique_id=630759045]
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SurroundingTileCheck/Top" unique_id=1144496931]
+position = Vector2(0, -64)
+shape = SubResource("RectangleShape2D_riqys")
+
+[node name="Bottom" type="Area2D" parent="SurroundingTileCheck" unique_id=1116772128]
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SurroundingTileCheck/Bottom" unique_id=148396321]
+position = Vector2(0, 64)
+shape = SubResource("RectangleShape2D_sn0t7")
+
+[node name="Right" type="Area2D" parent="SurroundingTileCheck" unique_id=1547434437]
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SurroundingTileCheck/Right" unique_id=100021793]
+position = Vector2(64, 0)
+shape = SubResource("RectangleShape2D_6f8o3")
+
+[node name="Left" type="Area2D" parent="SurroundingTileCheck" unique_id=185151167]
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SurroundingTileCheck/Left" unique_id=1005289571]
+position = Vector2(-64, 0)
+shape = SubResource("RectangleShape2D_qr0ht")
+
 [connection signal="body_entered" from="CheckIfValid" to="." method="_on_check_if_valid_body_entered"]
 [connection signal="body_exited" from="CheckIfValid" to="." method="_on_check_if_valid_body_exited"]
 [connection signal="input_event" from="CheckIfValid" to="." method="_on_check_if_valid_input_event"]
+[connection signal="timeout" from="SurroundingTileCheck/SurrondingCheckTimer" to="SurroundingTileCheck" method="_on_timer_timeout"]

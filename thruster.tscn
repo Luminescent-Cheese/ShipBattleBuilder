@@ -61,6 +61,11 @@ texture = ExtResource("3_bima3")
 [node name="CollisionShape2D" parent="CheckIfValid" parent_id_path=PackedInt32Array(815796589) index="0" unique_id=1649036300]
 shape = SubResource("RectangleShape2D_bima3")
 
+[node name="SurroundingTileCheck" parent="." index="5" unique_id=574259571]
+Bottom = 0
+Right = 1
+Left = 1
+
 [connection signal="add_collision" from="." to="ThrustForces" method="_on_thruster_add_collision"]
 [connection signal="clicked" from="." to="ThrustForces" method="_on_thruster_clicked"]
 [connection signal="justPlaced" from="." to="ThrustForces" method="_on_thruster_just_placed"]

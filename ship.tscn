@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://bnxujhykk358b" path="res://ship.gd" id="1_l3rv8"]
 [ext_resource type="Script" uid="uid://df8jd6m0wl5gi" path="res://ship_camera.gd" id="2_c3vuw"]
 [ext_resource type="Texture2D" uid="uid://dhxmcdpgiulrw" path="res://Center of gravity.png" id="2_v4325"]
-[ext_resource type="Texture2D" uid="uid://cd3oqmtqa078l" path="res://core.png" id="4_c3vuw"]
+[ext_resource type="PackedScene" uid="uid://csp1rv8jier8p" path="res://core.tscn" id="4_78o8j"]
 [ext_resource type="FontFile" uid="uid://dkd71wnjyxkyj" path="res://upheavtt.ttf" id="5_78o8j"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_riqys"]
@@ -43,9 +43,7 @@ texture_filter = 1
 position = Vector2(-85, -49.5)
 texture = ExtResource("2_v4325")
 
-[node name="Icon" type="Sprite2D" parent="." unique_id=824534812]
-texture_filter = 1
-texture = ExtResource("4_c3vuw")
+[node name="Core" parent="." unique_id=243587431 instance=ExtResource("4_78o8j")]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=228976419]
 shape = SubResource("RectangleShape2D_riqys")

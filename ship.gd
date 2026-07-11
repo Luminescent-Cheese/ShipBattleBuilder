@@ -26,7 +26,6 @@ func _process(delta: float) -> void:
 	#Launches Ship once space is pressed
 	if Input.is_action_just_pressed("Launch"):
 		isLaunched = true
-		print(isLaunched)
 	#used to display that on the hud (future plan)
 	speed = linear_velocity.length()
 	current_torque = angular_velocity
