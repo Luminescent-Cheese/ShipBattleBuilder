@@ -19,12 +19,17 @@ var force_pos = [Vector2.ZERO]
 #makes it so you can't place multiple things at once
 var canPlace = true
 
-func _process(delta: float) -> void:
+#Doesn't run physics simulations until space is pressed
+@onready var isLaunched = false
 
+func _process(delta: float) -> void:
+	#Launches Ship once space is pressed
+	if Input.is_action_just_pressed("Launch"):
+		isLaunched = true
+		print(isLaunched)
 	#used to display that on the hud (future plan)
 	speed = linear_velocity.length()
 	current_torque = angular_velocity
-	
 	Fuel_Label.text = str(int(fuel))+"/"+str(int(fuelMax))
 	Fuel_Bar.max_value = fuelMax
 	Fuel_Bar.value = fuel
@@ -67,9 +72,10 @@ func add_collision_shape(set_position):
 
 		
 func on_thrust(force_direction,force_position) -> void:
-	force_dir.append(force_direction.rotated(global_rotation))
-	force_pos.append(force_position)
-
+	if isLaunched:
+		force_dir.append(force_direction.rotated(global_rotation))
+		force_pos.append(force_position)
+		
 func _integrate_forces(state: PhysicsDirectBodyState2D) -> void:
 	for i in force_dir.size():
 		apply_force(force_dir[i],force_pos[i])

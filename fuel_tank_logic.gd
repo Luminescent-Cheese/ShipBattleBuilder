@@ -1,5 +1,6 @@
 extends Node2D
 
+@onready var ship = get_parent().get_parent()
 func _ready() -> void:
-	get_parent().get_parent().fuel += 1500
-	get_parent().get_parent().fuelMax += 1500
+	ship.fuel += 1500
+	ship.fuelMax += 1500
