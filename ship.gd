@@ -65,7 +65,8 @@ func add_collision_shape(set_position):
 	collision_shape.shape = RectangleShape2D.new()
 	collision_shape.shape.size = Vector2(128,128)
 	add_child(collision_shape)
-	mass += 5
+	#Adds new mass per till (In the future this should depend on the specific tile)
+	mass += 2.5
 	#recaulculates center of mass
 	calculate_center_of_mass()
 
