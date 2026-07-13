@@ -1,0 +1,89 @@
+[gd_scene format=3 uid="uid://bnevfjofnucor"]
+
+[ext_resource type="Texture2D" uid="uid://kcyt6acayp7l" path="res://art/FarStars.png" id="1_i7s6n"]
+[ext_resource type="Texture2D" uid="uid://cx1tltjjsdb6g" path="res://art/star Background closer (1).png" id="2_i7s6n"]
+
+[sub_resource type="Gradient" id="Gradient_i7s6n"]
+offsets = PackedFloat32Array(0, 0.46385542)
+colors = PackedColorArray(0.03529412, 0.07058824, 0.34509805, 0.09803922, 0.19417208, 0.00019882813, 0.57002133, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_bhunq"]
+gradient = SubResource("Gradient_i7s6n")
+fill = 1
+fill_from = Vector2(0.50869566, 0.46521738)
+
+[sub_resource type="Gradient" id="Gradient_xehqc"]
+offsets = PackedFloat32Array(0, 0.55421686)
+colors = PackedColorArray(0.13333334, 0.02745098, 0.31764707, 0.20392157, 4.5724212e-07, 0.220725, 0.3614601, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_riqys"]
+gradient = SubResource("Gradient_xehqc")
+fill = 1
+fill_from = Vector2(0.4826087, 0.49565217)
+
+[node name="Background" type="Node2D" unique_id=500384024]
+
+[node name="FarLayer" type="Parallax2D" parent="." unique_id=838584689]
+scroll_scale = Vector2(0.2, 0.2)
+repeat_size = Vector2(2048, 2048)
+repeat_times = 6
+
+[node name="BackgroundColor" type="ColorRect" parent="FarLayer" unique_id=260619752]
+offset_right = 2067.0
+offset_bottom = 2053.0
+color = Color(4.1362362e-09, 0.007953549, 0.032790825, 1)
+
+[node name="FarStars" type="Sprite2D" parent="FarLayer" unique_id=1356243332]
+modulate = Color(1.1638972, 1.1638972, 1.1638972, 1)
+texture_filter = 1
+texture = ExtResource("1_i7s6n")
+
+[node name="MidLayer" type="Parallax2D" parent="." unique_id=749372637]
+scroll_scale = Vector2(0.25, 0.25)
+repeat_size = Vector2(4096, 5096)
+repeat_times = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="MidLayer" unique_id=2105725796]
+modulate = Color(1.2742168, 1.2742168, 1.2742168, 1)
+texture_filter = 1
+texture = ExtResource("2_i7s6n")
+
+[node name="DustLayerOne" type="Parallax2D" parent="." unique_id=1574505860]
+repeat_size = Vector2(1024, 1024)
+repeat_times = 8
+
+[node name="Sprite2D" type="Sprite2D" parent="DustLayerOne" unique_id=1110249388]
+position = Vector2(1186, 1012.99994)
+scale = Vector2(38.062496, 32.65625)
+texture = SubResource("GradientTexture2D_bhunq")
+
+[node name="Sprite2D2" type="Sprite2D" parent="DustLayerOne" unique_id=1520602481]
+position = Vector2(600, 696.99994)
+scale = Vector2(34.28125, 22.781252)
+texture = SubResource("GradientTexture2D_bhunq")
+
+[node name="Sprite2D3" type="Sprite2D" parent="DustLayerOne" unique_id=341198854]
+position = Vector2(755.50006, 1327.4999)
+scale = Vector2(35.796875, 36.015625)
+texture = SubResource("GradientTexture2D_bhunq")
+
+[node name="DustLayerTwo" type="Parallax2D" parent="." unique_id=1033206157]
+scroll_scale = Vector2(0.8, 0.8)
+repeat_size = Vector2(2048, 2048)
+repeat_times = 4
+
+[node name="Sprite2D" type="Sprite2D" parent="DustLayerTwo" unique_id=448740916]
+position = Vector2(1274.0001, 941.99994)
+scale = Vector2(114.062515, 115)
+texture = SubResource("GradientTexture2D_riqys")
+
+[node name="Sprite2D2" type="Sprite2D" parent="DustLayerTwo" unique_id=1905968974]
+position = Vector2(876.1251, 2117)
+scale = Vector2(52.9961, 53.343754)
+texture = SubResource("GradientTexture2D_riqys")
+
+[node name="Sprite2D3" type="Sprite2D" parent="DustLayerTwo" unique_id=1805954173]
+position = Vector2(27.523926, 527.508)
+rotation = 0.4660029
+scale = Vector2(88.617165, 54.318256)
+texture = SubResource("GradientTexture2D_riqys")

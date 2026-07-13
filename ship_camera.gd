@@ -2,8 +2,17 @@ extends Camera2D
 @onready var camera = $"."
 @onready var targetZoom = Vector2(0.6,0.6)
 
+#Used so glow effect doesn't change based on zoom
+@onready var world_env:WorldEnvironment = get_tree().get_nodes_in_group("WorldEnvironment")[0]
+@export var base_threshold: float = 1
+
 #controls player camera movements (pan + zoom)
 func _input(event: InputEvent) -> void:
+	
+	#manages HDR threshold for zoom
+	var current_zoom: float = zoom.x
+	world_env.environment.glow_hdr_threshold = max(0.1, base_threshold * current_zoom)
+	
 	#changes target zoom (scroll-wheel mouse)
 	if event is InputEventMouseButton:
 		if event.button_index == MOUSE_BUTTON_WHEEL_UP:

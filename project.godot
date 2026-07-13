@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="ShipBattle"
-run/main_scene="uid://chiuclcqwe04d"
+run/main_scene="uid://b8t6oj4fdrkd0"
 config/features=PackedStringArray("4.7", "Forward Plus")
 config/icon="res://icon.svg"
 
@@ -81,3 +81,4 @@ Launch={
 [rendering]
 
 rendering_device/driver.windows="d3d12"
+viewport/hdr_2d=true

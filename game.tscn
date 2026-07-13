@@ -1,0 +1,21 @@
+[gd_scene format=3 uid="uid://b8t6oj4fdrkd0"]
+
+[ext_resource type="PackedScene" uid="uid://d1ijkjsfx8hci" path="res://ship.tscn" id="1_80nbo"]
+[ext_resource type="PackedScene" uid="uid://bnevfjofnucor" path="res://background.tscn" id="2_e2o6t"]
+
+[sub_resource type="Environment" id="Environment_bhunq"]
+background_mode = 3
+glow_enabled = true
+glow_intensity = 2.31
+glow_strength = 1.2
+glow_bloom = 0.01
+glow_blend_mode = 0
+
+[node name="Game" type="Node2D" unique_id=1570493598]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1289293379 groups=["WorldEnvironment"]]
+environment = SubResource("Environment_bhunq")
+
+[node name="Background" parent="." unique_id=1596054801 instance=ExtResource("2_e2o6t")]
+
+[node name="Ship" parent="." unique_id=1069543584 instance=ExtResource("1_80nbo")]

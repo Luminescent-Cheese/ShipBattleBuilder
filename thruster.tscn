@@ -28,6 +28,7 @@ size = Vector2(124, 124)
 [node name="Thruster" unique_id=713508415 instance=ExtResource("1_bda3k")]
 
 [node name="ThrusterParticles" type="CPUParticles2D" parent="." index="0" unique_id=2144551150]
+modulate = Color(1.0627335, 1.0627335, 1.0627335, 1)
 position = Vector2(0, 60)
 emitting = false
 amount = 11

@@ -30,4 +30,3 @@ func _on_timer_timeout() -> void:
 			elif (checkNum == 2 and compatibility != 1) or checkNum == 1 or checkNum == 0:
 				ValidPlacement = false
 				break
-	print(ValidPlacement)
