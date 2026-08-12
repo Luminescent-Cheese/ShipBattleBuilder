@@ -31,4 +31,9 @@ shape = SubResource("CircleShape2D_bhunq")
 wait_time = 5.0
 autostart = true
 
+[node name="ApperanceTimer" type="Timer" parent="." unique_id=1452869411]
+wait_time = 0.05
+autostart = true
+
 [connection signal="timeout" from="DeletionTimer" to="." method="_on_deletion_timer_timeout"]
+[connection signal="timeout" from="ApperanceTimer" to="." method="_on_apperance_timer_timeout"]

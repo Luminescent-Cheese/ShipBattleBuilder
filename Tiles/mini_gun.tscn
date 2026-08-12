@@ -30,6 +30,18 @@ animations = [{
 resource_local_to_scene = true
 size = Vector2(124, 124)
 
+[sub_resource type="Gradient" id="Gradient_puy3g"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_bhunq"]
+gradient = SubResource("Gradient_puy3g")
+width = 8
+height = 8
+
+[sub_resource type="Gradient" id="Gradient_riqys"]
+offsets = PackedFloat32Array(0, 0.44444445, 1)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 0.33355117, 1, 1, 0.68235296, 0.1882353, 1)
+
 [node name="MiniGun" unique_id=243587431 instance=ExtResource("1_pe00t")]
 
 [node name="GunLogic" type="Node2D" parent="." index="0" unique_id=931403881]
@@ -56,5 +68,23 @@ shape = SubResource("RectangleShape2D_puy3g")
 Bottom = 0
 Right = 1
 Left = 1
+
+[node name="GunFireParticle" type="CPUParticles2D" parent="." index="7" unique_id=843318605]
+position = Vector2(0, 64)
+emitting = false
+amount = 10
+texture = SubResource("GradientTexture2D_bhunq")
+lifetime = 0.2
+one_shot = true
+explosiveness = 1.0
+local_coords = true
+emission_shape = 3
+emission_rect_extents = Vector2(10, 1)
+direction = Vector2(0, 1)
+gravity = Vector2(0, 0)
+initial_velocity_min = 92.59
+initial_velocity_max = 166.66
+scale_amount_min = 0.5
+color_ramp = SubResource("Gradient_riqys")
 
 [connection signal="timeout" from="ShotCooldown" to="GunLogic" method="_on_shot_cooldown_timeout"]
