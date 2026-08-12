@@ -1,8 +1,8 @@
 [gd_scene format=3 uid="uid://bnvbyi3c63nr1"]
 
-[ext_resource type="Script" uid="uid://ymvgvf1xlyol" path="res://ship_part.gd" id="1_epihn"]
-[ext_resource type="Texture2D" uid="uid://bmpyxpqiofkfm" path="res://art/basic body2.png" id="2_epihn"]
-[ext_resource type="Script" uid="uid://b1eufy7n8bf7j" path="res://surrounding_tile_check.gd" id="3_nwga8"]
+[ext_resource type="Script" uid="uid://ymvgvf1xlyol" path="res://Tiles/ship_part.gd" id="1_peb2t"]
+[ext_resource type="Texture2D" uid="uid://bmpyxpqiofkfm" path="res://art/basic body2.png" id="2_hd3e3"]
+[ext_resource type="Script" uid="uid://b1eufy7n8bf7j" path="res://surrounding_tile_check.gd" id="3_w2bqs"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bhunq"]
 resource_local_to_scene = true
@@ -17,11 +17,11 @@ size = Vector2(124, 124)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qr0ht"]
 
 [node name="ShipPart" type="Node2D" unique_id=243587431]
-script = ExtResource("1_epihn")
+script = ExtResource("1_peb2t")
 
 [node name="BaseShipSprite" type="Sprite2D" parent="." unique_id=1416035950]
 texture_filter = 1
-texture = ExtResource("2_epihn")
+texture = ExtResource("2_hd3e3")
 
 [node name="CheckIfValid" type="Area2D" parent="." unique_id=815796589]
 
@@ -29,7 +29,7 @@ texture = ExtResource("2_epihn")
 shape = SubResource("RectangleShape2D_bhunq")
 
 [node name="SurroundingTileCheck" type="Node2D" parent="." unique_id=574259571]
-script = ExtResource("3_nwga8")
+script = ExtResource("3_w2bqs")
 Top = 2
 Bottom = 2
 Right = 2

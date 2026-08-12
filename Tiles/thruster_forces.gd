@@ -38,14 +38,12 @@ func _on_thruster_just_placed() -> void:
 
 
 func _on_thruster_clicked() -> void:
-	#changes activation key (select is ctrl)
-	if Input.is_action_pressed("select"):
-		if Input.is_action_pressed("Thrust Forward"):
-			ActivationKey = "Thrust Forward"
-		elif Input.is_action_pressed("Thrust Left"):
-			ActivationKey =  "Thrust Left"
-		elif Input.is_action_pressed("Thrust Right"):
-			ActivationKey = "Thrust Right"
-		elif Input.is_action_pressed("Thrust Backward"):
-			ActivationKey = "Thrust Backward"
-		WaitKey = true
+	if Input.is_action_pressed("Thrust Forward"):
+		ActivationKey = "Thrust Forward"
+	elif Input.is_action_pressed("Thrust Left"):
+		ActivationKey =  "Thrust Left"
+	elif Input.is_action_pressed("Thrust Right"):
+		ActivationKey = "Thrust Right"
+	elif Input.is_action_pressed("Thrust Backward"):
+		ActivationKey = "Thrust Backward"
+	WaitKey = true

@@ -1,0 +1,60 @@
+[gd_scene format=3 uid="uid://cqo60w4va4ss2"]
+
+[ext_resource type="PackedScene" uid="uid://bnvbyi3c63nr1" path="res://Tiles/ship_part.tscn" id="1_pe00t"]
+[ext_resource type="Script" uid="uid://c2wwir1tyxphv" path="res://Tiles/gun_logic.gd" id="2_puy3g"]
+[ext_resource type="Texture2D" uid="uid://cbjth5up742xc" path="res://art/minigun.png" id="2_y7u3r"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_puy3g"]
+atlas = ExtResource("2_y7u3r")
+region = Rect2(0, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7iowm"]
+atlas = ExtResource("2_y7u3r")
+region = Rect2(0, 128, 128, 128)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_bhunq"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_puy3g")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7iowm")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_puy3g"]
+resource_local_to_scene = true
+size = Vector2(124, 124)
+
+[node name="MiniGun" unique_id=243587431 instance=ExtResource("1_pe00t")]
+
+[node name="GunLogic" type="Node2D" parent="." index="0" unique_id=931403881]
+script = ExtResource("2_puy3g")
+
+[node name="AimMark" type="Marker2D" parent="." index="1" unique_id=285166120]
+position = Vector2(0, 50)
+
+[node name="ShotCooldown" type="Timer" parent="." index="2" unique_id=1956502820]
+wait_time = 0.1
+
+[node name="BaseShipSprite" parent="." index="3" unique_id=1416035950]
+position = Vector2(52, -60.000004)
+scale = Vector2(0.046875, 0.0546875)
+
+[node name="MinigunSprite" type="AnimatedSprite2D" parent="." index="4" unique_id=276044571]
+texture_filter = 1
+sprite_frames = SubResource("SpriteFrames_bhunq")
+
+[node name="CollisionShape2D" parent="CheckIfValid" parent_id_path=PackedInt32Array(815796589) index="0" unique_id=1649036300]
+shape = SubResource("RectangleShape2D_puy3g")
+
+[node name="SurroundingTileCheck" parent="." index="6" unique_id=574259571]
+Bottom = 0
+Right = 1
+Left = 1
+
+[connection signal="timeout" from="ShotCooldown" to="GunLogic" method="_on_shot_cooldown_timeout"]

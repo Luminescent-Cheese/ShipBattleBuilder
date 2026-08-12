@@ -1,8 +1,9 @@
 extends RigidBody2D
 
-@onready var Ship_Part = preload("res://ship_part.tscn")
-@onready var Thruster = preload("res://thruster.tscn")
-@onready var Fuel = preload("res://fuel_tile.tscn")
+@onready var Ship_Part = preload("uid://bnvbyi3c63nr1")
+@onready var Thruster = preload("uid://bqt8aindfhcmj")
+@onready var Fuel = preload("uid://cjx5kmjalasat")
+@onready var MiniGun = preload("uid://cqo60w4va4ss2")
 @onready var shipCamera = $ShipCamera
 
 #Hud Nodes
@@ -51,6 +52,11 @@ func _process(delta: float) -> void:
 			var New_fuel = Fuel.instantiate()
 			add_child(New_fuel)
 			New_fuel.add_collision.connect(add_collision_shape)
+		if Input.is_action_just_pressed("test4"):
+			canPlace = false
+			var New_gun = MiniGun.instantiate()
+			add_child(New_gun)
+			New_gun.add_collision.connect(add_collision_shape)
 			
 	$CenterOfMass.position = Vector2(0,0)
 	#always lerps camera back to 0,0 whenever it leaves smoothly

@@ -1,8 +1,8 @@
 [gd_scene format=3 uid="uid://bqt8aindfhcmj"]
 
-[ext_resource type="PackedScene" uid="uid://bnvbyi3c63nr1" path="res://ship_part.tscn" id="1_bda3k"]
-[ext_resource type="Script" uid="uid://wxbdw2v2whqx" path="res://thruster_forces.gd" id="2_as1lm"]
-[ext_resource type="Texture2D" uid="uid://do7gag750t6h6" path="res://art/new thruster.png" id="3_bima3"]
+[ext_resource type="PackedScene" uid="uid://bnvbyi3c63nr1" path="res://Tiles/ship_part.tscn" id="1_w7wiu"]
+[ext_resource type="Script" uid="uid://wxbdw2v2whqx" path="res://Tiles/thruster_forces.gd" id="2_hb8fa"]
+[ext_resource type="Texture2D" uid="uid://do7gag750t6h6" path="res://art/new thruster.png" id="3_wj3tf"]
 
 [sub_resource type="Gradient" id="Gradient_bima3"]
 offsets = PackedFloat32Array(0, 0.14457831)
@@ -21,11 +21,11 @@ point_count = 2
 offsets = PackedFloat32Array(0, 0.56790125, 0.99382716)
 colors = PackedColorArray(1, 0.015686275, 0, 1, 1, 0.67058825, 0.6627451, 0.7529412, 1, 1, 1, 0)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_bima3"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pj8mf"]
 resource_local_to_scene = true
 size = Vector2(124, 124)
 
-[node name="Thruster" unique_id=713508415 instance=ExtResource("1_bda3k")]
+[node name="Thruster" unique_id=713508415 instance=ExtResource("1_w7wiu")]
 
 [node name="ThrusterParticles" type="CPUParticles2D" parent="." index="0" unique_id=2144551150]
 modulate = Color(1.0627335, 1.0627335, 1.0627335, 1)
@@ -54,13 +54,13 @@ hue_variation_max = 0.8
 position = Vector2(0, -20)
 
 [node name="ThrustForces" type="Node2D" parent="." index="2" unique_id=1565694415]
-script = ExtResource("2_as1lm")
+script = ExtResource("2_hb8fa")
 
 [node name="BaseShipSprite" parent="." index="3" unique_id=1416035950]
-texture = ExtResource("3_bima3")
+texture = ExtResource("3_wj3tf")
 
 [node name="CollisionShape2D" parent="CheckIfValid" parent_id_path=PackedInt32Array(815796589) index="0" unique_id=1649036300]
-shape = SubResource("RectangleShape2D_bima3")
+shape = SubResource("RectangleShape2D_pj8mf")
 
 [node name="SurroundingTileCheck" parent="." index="5" unique_id=574259571]
 Bottom = 0
