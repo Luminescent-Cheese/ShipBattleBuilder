@@ -27,12 +27,12 @@ func place():
 		var oldGlobalPosition = global_position
 		global_position = get_global_mouse_position().snapped(Vector2(TILE_WIDTH,TILE_WIDTH))
 		if not overlap and SurrondingCheckCode.ValidPlacement:
-			tileSprite.self_modulate = Color(0.0, 1.0, 0.376, 1.0)
+			modulate = Color(0.0, 1.0, 0.376, 1.0)
 		else:
-			tileSprite.self_modulate = Color(1.0, 0.0, 0.0, 1.0)
+			modulate = Color(1.0, 0.0, 0.0, 1.0)
 		if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT) and overlap == false and SurrondingCheckCode.ValidPlacement:
 			placeable = false
-			tileSprite.self_modulate = Color(1.0, 1.0, 1.0, 1.0)
+			modulate = Color(1.0, 1.0, 1.0, 1.0)
 			add_collision.emit(position, name)
 			justPlaced.emit()
 		if Input.is_action_just_pressed("rotate"):
@@ -77,9 +77,14 @@ func destroy_tile():
 	SurrondingCheckCode.Right = 1
 	SurrondingCheckCode.Left = 1
 	get_parent().calculate_debris(self)
-	queue_free()
+	$Explosion.emitting = true
+	$BaseShipSprite.visible = false
 	
 func _on_clicked() -> void:
 	#TEST CODE for damage
 	if Input.is_action_pressed("Launch"):
 		destroy_tile()
+
+
+func _on_explosion_finished() -> void:
+	queue_free()

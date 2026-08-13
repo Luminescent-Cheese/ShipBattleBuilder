@@ -155,4 +155,10 @@ func calculate_debris(startTile):
 					collisionObject.reparent(newDebris)
 				else:
 					print("Collision Shape not found")
+			newDebris.Ship = self
+			newDebris.Pivot = visited[0].global_position
+			#Matches Debris velocity and angular velocity with ship
+			newDebris.linear_velocity = linear_velocity
+			newDebris.angular_velocity = angular_velocity
 			add_sibling(newDebris)
+	calculate_center_of_mass()

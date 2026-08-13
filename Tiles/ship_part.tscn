@@ -16,6 +16,24 @@ size = Vector2(124, 124)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qr0ht"]
 
+[sub_resource type="Gradient" id="Gradient_peb2t"]
+offsets = PackedFloat32Array(0, 0.7777778)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_bhunq"]
+gradient = SubResource("Gradient_peb2t")
+fill = 1
+fill_from = Vector2(0.4924623, 0.4924623)
+fill_to = Vector2(0.83919597, 0.16080402)
+
+[sub_resource type="Curve" id="Curve_peb2t"]
+_data = [Vector2(0, 0.8089888), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Gradient" id="Gradient_hd3e3"]
+offsets = PackedFloat32Array(0, 0.41984734, 1)
+colors = PackedColorArray(1, 0.26666668, 0, 1, 1, 0.5921569, 0, 1, 1, 1, 1, 0)
+
 [node name="ShipPart" type="Node2D" unique_id=243587431 groups=["Ship_tiles"]]
 script = ExtResource("1_peb2t")
 
@@ -71,8 +89,29 @@ shape = SubResource("RectangleShape2D_qr0ht")
 wait_time = 0.05
 one_shot = true
 
+[node name="Explosion" type="CPUParticles2D" parent="." unique_id=1346559705]
+emitting = false
+amount = 50
+texture = SubResource("GradientTexture2D_bhunq")
+lifetime = 0.5
+one_shot = true
+explosiveness = 0.5
+local_coords = true
+emission_shape = 1
+emission_sphere_radius = 61.23
+direction = Vector2(0, 0)
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 100.0
+initial_velocity_max = 150.0
+scale_amount_min = 2.0
+scale_amount_max = 3.0
+scale_amount_curve = SubResource("Curve_peb2t")
+color_ramp = SubResource("Gradient_hd3e3")
+
 [connection signal="clicked" from="." to="." method="_on_clicked"]
 [connection signal="body_entered" from="CheckIfValid" to="." method="_on_check_if_valid_body_entered"]
 [connection signal="body_exited" from="CheckIfValid" to="." method="_on_check_if_valid_body_exited"]
 [connection signal="input_event" from="CheckIfValid" to="." method="_on_check_if_valid_input_event"]
 [connection signal="timeout" from="SurroundingTileCheck/SurrondingCheckTimer" to="SurroundingTileCheck" method="_on_timer_timeout"]
+[connection signal="finished" from="Explosion" to="." method="_on_explosion_finished"]

@@ -1,3 +1,8 @@
 [gd_scene format=3 uid="uid://c080ovdk6pwb0"]
 
+[ext_resource type="Script" uid="uid://ctn8ishhxhhui" path="res://debris.gd" id="1_e8eya"]
+
 [node name="Debris" type="RigidBody2D" unique_id=1245159148]
+linear_damp_mode = 1
+angular_damp_mode = 1
+script = ExtResource("1_e8eya")
