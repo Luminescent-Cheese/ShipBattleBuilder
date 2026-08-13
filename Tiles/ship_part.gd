@@ -33,7 +33,7 @@ func place():
 		if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT) and overlap == false and SurrondingCheckCode.ValidPlacement:
 			placeable = false
 			tileSprite.self_modulate = Color(1.0, 1.0, 1.0, 1.0)
-			add_collision.emit(position)
+			add_collision.emit(position, name)
 			justPlaced.emit()
 		if Input.is_action_just_pressed("rotate"):
 			rotation += PI/2
@@ -77,11 +77,9 @@ func destroy_tile():
 	SurrondingCheckCode.Right = 1
 	SurrondingCheckCode.Left = 1
 	get_parent().calculate_debris(self)
-	modulate = Color(0.0, 0.294, 1.0)
+	queue_free()
 	
 func _on_clicked() -> void:
 	#TEST CODE for damage
 	if Input.is_action_pressed("Launch"):
 		destroy_tile()
-	else:
-		print(tileNeighbors)

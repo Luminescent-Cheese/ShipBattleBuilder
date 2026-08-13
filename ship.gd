@@ -4,6 +4,8 @@ extends RigidBody2D
 @onready var Thruster = preload("uid://bqt8aindfhcmj")
 @onready var Fuel = preload("uid://cjx5kmjalasat")
 @onready var MiniGun = preload("uid://cqo60w4va4ss2")
+@onready var Debris = preload("res://debris.tscn")
+
 @onready var shipCamera = $ShipCamera
 @onready var Core = $Core
 #Hud Nodes
@@ -36,7 +38,6 @@ func _process(delta: float) -> void:
 	Fuel_Bar.max_value = fuelMax
 	Fuel_Bar.value = fuel
 	
-	#print(speed," : ",current_torque)
 	if canPlace:
 		if Input.is_action_just_pressed("test"):
 			canPlace = false
@@ -65,13 +66,14 @@ func _process(delta: float) -> void:
 	var weight: float = 1.0 - exp(-10 * delta)
 	shipCamera.position = shipCamera.position.lerp(Vector2.ZERO,weight)
 
-func add_collision_shape(set_position):
+func add_collision_shape(set_position, setName):
 	#probably should get a better place to put that canPlace in the future
 	canPlace = true
 	var collision_shape = CollisionShape2D.new()
 	collision_shape.position = set_position
 	collision_shape.shape = RectangleShape2D.new()
 	collision_shape.shape.size = Vector2(128,128)
+	collision_shape.name = str(setName)+"collisionShape"
 	add_child(collision_shape)
 	#Adds new mass per till (In the future this should depend on the specific tile)
 	mass += 2
@@ -117,6 +119,11 @@ func recalculate_all_neighbors():
 
 func calculate_debris(startTile):
 	var routes = startTile.tileNeighbors
+	#Delete startingTiles CollisionShape2D
+	var startCollisionShapeName = str(startTile.name) + "collisionShape"
+	startCollisionShapeName = startCollisionShapeName.replace("@","_")
+	if get_node(startCollisionShapeName) in get_children():
+		get_node(startCollisionShapeName).queue_free()
 	recalculate_all_neighbors()
 	var visited = []
 	var toVisit = []
@@ -128,16 +135,24 @@ func calculate_debris(startTile):
 		for tryTile in current.tileNeighbors:
 			if not tryTile in visited:
 				toVisit.append(tryTile)
-		current.modulate = Color(0.0, 1.0, 0.0)
 		while toVisit.size() > 0:
-			print(toVisit)
 			current = toVisit[0]
 			toVisit.remove_at(0)
 			visited.append(current)
-			current.modulate = Color(0.0, 1.0, 0.0)
 			for tryTile in current.tileNeighbors:
 				if not tryTile in visited:
 					toVisit.append(tryTile)
 		if not Core in visited:
+			#break off piece of debris
+			var newDebris = Debris.instantiate()
+			var collisionObject:CollisionShape2D
 			for tile in visited:
-				tile.modulate = Color(1.0, 0.0, 0.0)
+				tile.reparent(newDebris)
+				var collisionShapeName = str(tile.name) + "collisionShape"
+				collisionShapeName = collisionShapeName.replace("@","_")
+				if get_node(collisionShapeName) in get_children():
+					collisionObject = get_node(collisionShapeName)
+					collisionObject.reparent(newDebris)
+				else:
+					print("Collision Shape not found")
+			add_sibling(newDebris)

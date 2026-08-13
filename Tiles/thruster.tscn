@@ -21,7 +21,7 @@ point_count = 2
 offsets = PackedFloat32Array(0, 0.56790125, 0.99382716)
 colors = PackedColorArray(1, 0.015686275, 0, 1, 1, 0.67058825, 0.6627451, 0.7529412, 1, 1, 1, 0)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_pj8mf"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_w7wiu"]
 resource_local_to_scene = true
 size = Vector2(124, 124)
 
@@ -60,7 +60,7 @@ script = ExtResource("2_hb8fa")
 texture = ExtResource("3_wj3tf")
 
 [node name="CollisionShape2D" parent="CheckIfValid" parent_id_path=PackedInt32Array(815796589) index="0" unique_id=1649036300]
-shape = SubResource("RectangleShape2D_pj8mf")
+shape = SubResource("RectangleShape2D_w7wiu")
 
 [node name="SurroundingTileCheck" parent="." index="5" unique_id=574259571]
 Bottom = 0
