@@ -12,10 +12,15 @@ enum attachability {Bad,Neutral,Good}
 @onready var LeftArea = $Left
 
 @onready var ValidPlacement = false
+@onready var Neighbors = []
 
 #Checks to see if the tile can be placed Validly when put there
 func _on_timer_timeout() -> void:
+	check_neighbors()
+
+func check_neighbors():
 	ValidPlacement = false
+	Neighbors = []
 	var checkList = [TopArea,BottomArea,RightArea,LeftArea]
 	for i in range(4):
 		var CurrentlyChecking = (checkList[i]).get_overlapping_areas()
@@ -27,6 +32,8 @@ func _on_timer_timeout() -> void:
 			var checkNum = compatibility + get(str(checkList[i]).split(":")[0])
 			if checkNum == 4:
 				ValidPlacement = true
+				Neighbors.append(tile.get_parent())
 			elif (checkNum == 2 and compatibility != 1) or checkNum == 1 or checkNum == 0:
 				ValidPlacement = false
 				break
+	get_parent().tileNeighbors = Neighbors

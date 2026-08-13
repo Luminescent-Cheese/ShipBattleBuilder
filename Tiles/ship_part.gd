@@ -7,13 +7,17 @@ var TILE_WIDTH
 @onready var tileSprite = $BaseShipSprite
 @onready var SurrondingCheckTimer = $SurroundingTileCheck/SurrondingCheckTimer
 @onready var SurrondingCheckCode = $SurroundingTileCheck
+
 signal thruster_on
 signal add_collision
 signal justPlaced
 signal clicked
+
+var tileNeighbors = []
+
 func _ready() -> void:
 	TILE_WIDTH = tileSprite.get_rect().size.x
-
+	add_to_group("Ship_tiles")
 func _process(delta: float) -> void:
 	place()
 
@@ -38,6 +42,7 @@ func place():
 			SurrondingCheckTimer.start()
 		if global_position != oldGlobalPosition:
 			SurrondingCheckTimer.start()
+
 func _on_thruster_forces_thrust(ThrustDirection) -> void:
 	#makes sure craft has fuel (and thrust strength)
 	if get_parent().fuel > 0:
@@ -64,3 +69,19 @@ func _on_check_if_valid_input_event(viewport: Node, event: InputEvent, shape_idx
 			else:
 				clickable = true
 	#makes sure that it isn't opened when first spawned in
+
+func destroy_tile():
+	#makes it so tile no longer counts as a neighbor to other tiles
+	SurrondingCheckCode.Top = 1
+	SurrondingCheckCode.Bottom = 1
+	SurrondingCheckCode.Right = 1
+	SurrondingCheckCode.Left = 1
+	get_parent().calculate_debris(self)
+	modulate = Color(0.0, 0.294, 1.0)
+	
+func _on_clicked() -> void:
+	#TEST CODE for damage
+	if Input.is_action_pressed("Launch"):
+		destroy_tile()
+	else:
+		print(tileNeighbors)

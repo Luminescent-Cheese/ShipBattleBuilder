@@ -5,7 +5,7 @@ extends RigidBody2D
 @onready var Fuel = preload("uid://cjx5kmjalasat")
 @onready var MiniGun = preload("uid://cqo60w4va4ss2")
 @onready var shipCamera = $ShipCamera
-
+@onready var Core = $Core
 #Hud Nodes
 @onready var Fuel_Label = $Hud/HudStats/Fuel/FuelBar/FuelBarLabel
 @onready var Fuel_Bar = $Hud/HudStats/Fuel/FuelBar
@@ -26,6 +26,8 @@ var canPlace = true
 func _process(delta: float) -> void:
 	#Launches Ship once space is pressed
 	if Input.is_action_just_pressed("Launch"):
+		if not isLaunched:
+			recalculate_all_neighbors()
 		isLaunched = true
 	#used to display that on the hud (future plan)
 	speed = linear_velocity.length()
@@ -72,7 +74,7 @@ func add_collision_shape(set_position):
 	collision_shape.shape.size = Vector2(128,128)
 	add_child(collision_shape)
 	#Adds new mass per till (In the future this should depend on the specific tile)
-	mass += 2.5
+	mass += 2
 	#recaulculates center of mass
 	calculate_center_of_mass()
 
@@ -107,3 +109,35 @@ func calculate_center_of_mass():
 				child.position -= averagePosition
 	#changes global position so it looks like no movement occured
 	global_position += averagePosition
+
+func recalculate_all_neighbors():
+	for child in get_children():
+		if child.is_in_group("Ship_tiles"):
+			child.SurrondingCheckCode.check_neighbors()
+
+func calculate_debris(startTile):
+	var routes = startTile.tileNeighbors
+	recalculate_all_neighbors()
+	var visited = []
+	var toVisit = []
+	for i in range(routes.size()):
+		visited.clear()
+		toVisit.clear()
+		visited.append(routes[i])
+		var current = visited[0]
+		for tryTile in current.tileNeighbors:
+			if not tryTile in visited:
+				toVisit.append(tryTile)
+		current.modulate = Color(0.0, 1.0, 0.0)
+		while toVisit.size() > 0:
+			print(toVisit)
+			current = toVisit[0]
+			toVisit.remove_at(0)
+			visited.append(current)
+			current.modulate = Color(0.0, 1.0, 0.0)
+			for tryTile in current.tileNeighbors:
+				if not tryTile in visited:
+					toVisit.append(tryTile)
+		if not Core in visited:
+			for tile in visited:
+				tile.modulate = Color(1.0, 0.0, 0.0)

@@ -16,7 +16,7 @@ size = Vector2(124, 124)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qr0ht"]
 
-[node name="ShipPart" type="Node2D" unique_id=243587431]
+[node name="ShipPart" type="Node2D" unique_id=243587431 groups=["Ship_tiles"]]
 script = ExtResource("1_peb2t")
 
 [node name="BaseShipSprite" type="Sprite2D" parent="." unique_id=1416035950]
@@ -34,10 +34,6 @@ Top = 2
 Bottom = 2
 Right = 2
 Left = 2
-
-[node name="SurrondingCheckTimer" type="Timer" parent="SurroundingTileCheck" unique_id=1369553166]
-wait_time = 0.05
-one_shot = true
 
 [node name="Top" type="Area2D" parent="SurroundingTileCheck" unique_id=630759045]
 collision_layer = 2
@@ -71,6 +67,11 @@ collision_mask = 2
 position = Vector2(-64, 0)
 shape = SubResource("RectangleShape2D_qr0ht")
 
+[node name="SurrondingCheckTimer" type="Timer" parent="SurroundingTileCheck" unique_id=1369553166]
+wait_time = 0.05
+one_shot = true
+
+[connection signal="clicked" from="." to="." method="_on_clicked"]
 [connection signal="body_entered" from="CheckIfValid" to="." method="_on_check_if_valid_body_entered"]
 [connection signal="body_exited" from="CheckIfValid" to="." method="_on_check_if_valid_body_exited"]
 [connection signal="input_event" from="CheckIfValid" to="." method="_on_check_if_valid_input_event"]
