@@ -67,7 +67,12 @@ Bottom = 0
 Right = 1
 Left = 1
 
+[node name="EndThrustParticles" type="Timer" parent="." index="7" unique_id=2104590267]
+wait_time = 0.05
+
 [connection signal="add_collision" from="." to="ThrustForces" method="_on_thruster_add_collision"]
 [connection signal="clicked" from="." to="ThrustForces" method="_on_thruster_clicked"]
 [connection signal="justPlaced" from="." to="ThrustForces" method="_on_thruster_just_placed"]
+[connection signal="newInput" from="." to="ThrustForces" method="_on_thruster_new_input"]
 [connection signal="thrust" from="ThrustForces" to="." method="_on_thruster_forces_thrust"]
+[connection signal="timeout" from="EndThrustParticles" to="ThrustForces" method="_on_end_thrust_particles_timeout"]

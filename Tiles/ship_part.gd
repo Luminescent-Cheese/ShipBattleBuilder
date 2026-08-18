@@ -2,6 +2,7 @@ extends Node2D
 
 var TILE_WIDTH
 @export var placeable = true
+@export var thrustStrength = 7500
 @onready var clickable = false
 @onready var overlap = false
 @onready var tileSprite = $BaseShipSprite
@@ -12,14 +13,18 @@ signal thruster_on
 signal add_collision
 signal justPlaced
 signal clicked
-
+signal newInput(event)
 var tileNeighbors = []
 
 func _ready() -> void:
 	TILE_WIDTH = tileSprite.get_rect().size.x
 	add_to_group("Ship_tiles")
+
 func _process(delta: float) -> void:
 	place()
+
+func on_button_pressed(event):
+	newInput.emit(event)
 
 func place():
 	if placeable:
@@ -46,7 +51,7 @@ func place():
 func _on_thruster_forces_thrust(ThrustDirection) -> void:
 	#makes sure craft has fuel (and thrust strength)
 	if get_parent().fuel > 0:
-		thruster_on.emit(transform.y*-2500,global_position-get_parent().global_position)
+		thruster_on.emit(transform.y*-thrustStrength,global_position-get_parent().global_position)
 		if get_parent().isLaunched:
 			get_parent().fuel -= 1
 

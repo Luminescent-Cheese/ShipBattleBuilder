@@ -21,11 +21,22 @@ var force_pos = [Vector2.ZERO]
 
 #makes it so you can't place multiple things at once
 var canPlace = true
-
+#Spam timers for all keys
+var active_keys: Dictionary = {}
+const SPAM_INTERVAL: float = 0.05
 #Doesn't run physics simulations until space is pressed
 @onready var isLaunched = false
 
+signal button_pressed(button)
+
 func _process(delta: float) -> void:
+	#Input timers count down
+	for code in active_keys.keys():
+		active_keys[code] -= delta
+		
+		if active_keys[code] <= 0:
+			button_pressed.emit(OS.get_keycode_string(code))
+			active_keys[code] = SPAM_INTERVAL
 	#Launches Ship once space is pressed
 	if Input.is_action_just_pressed("Launch"):
 		if not isLaunched:
@@ -42,22 +53,26 @@ func _process(delta: float) -> void:
 		if Input.is_action_just_pressed("test"):
 			canPlace = false
 			var New_part = Ship_Part.instantiate()
+			button_pressed.connect(New_part.on_button_pressed)
 			add_child(New_part)
 			New_part.add_collision.connect(add_collision_shape)
 		if Input.is_action_just_pressed("test2"):
 			canPlace = false
 			var New_thruster = Thruster.instantiate()
+			button_pressed.connect(New_thruster.on_button_pressed)
 			add_child(New_thruster)
 			New_thruster.thruster_on.connect( on_thrust)
 			New_thruster.add_collision.connect(add_collision_shape)
 		if Input.is_action_just_pressed("test3"):
 			canPlace = false
 			var New_fuel = Fuel.instantiate()
+			button_pressed.connect(New_fuel.on_button_pressed)
 			add_child(New_fuel)
 			New_fuel.add_collision.connect(add_collision_shape)
 		if Input.is_action_just_pressed("test4"):
 			canPlace = false
 			var New_gun = MiniGun.instantiate()
+			button_pressed.connect(New_gun.on_button_pressed)
 			add_child(New_gun)
 			New_gun.add_collision.connect(add_collision_shape)
 			
@@ -66,20 +81,18 @@ func _process(delta: float) -> void:
 	var weight: float = 1.0 - exp(-10 * delta)
 	shipCamera.position = shipCamera.position.lerp(Vector2.ZERO,weight)
 
-func add_collision_shape(set_position, setName):
-	#probably should get a better place to put that canPlace in the future
-	canPlace = true
-	var collision_shape = CollisionShape2D.new()
-	collision_shape.position = set_position
-	collision_shape.shape = RectangleShape2D.new()
-	collision_shape.shape.size = Vector2(128,128)
-	collision_shape.name = str(setName)+"collisionShape"
-	add_child(collision_shape)
-	#Adds new mass per till (In the future this should depend on the specific tile)
-	mass += 2
-	#recaulculates center of mass
-	calculate_center_of_mass()
-
+func _input(event: InputEvent) -> void:
+	if event is InputEventKey:
+		if event.is_echo():
+			return
+		
+		var code: Key = event.keycode
+		
+		if event.pressed:
+			if not active_keys.has(code):
+				active_keys[code] = SPAM_INTERVAL
+		else:
+			active_keys.erase(code)
 		
 func on_thrust(force_direction,force_position) -> void:
 	if isLaunched:
@@ -111,7 +124,21 @@ func calculate_center_of_mass():
 				child.position -= averagePosition
 	#changes global position so it looks like no movement occured
 	global_position += averagePosition
-
+	
+func add_collision_shape(set_position, setName):
+	#probably should get a better place to put that canPlace in the future
+	canPlace = true
+	var collision_shape = CollisionShape2D.new()
+	collision_shape.position = set_position
+	collision_shape.shape = RectangleShape2D.new()
+	collision_shape.shape.size = Vector2(128,128)
+	collision_shape.name = str(setName)+"collisionShape"
+	add_child(collision_shape)
+	#Adds new mass per till (In the future this should depend on the specific tile)
+	mass += 2
+	#recaulculates center of mass
+	calculate_center_of_mass()
+	
 func recalculate_all_neighbors():
 	for child in get_children():
 		if child.is_in_group("Ship_tiles"):
@@ -157,6 +184,7 @@ func calculate_debris(startTile):
 					print("Collision Shape not found")
 			newDebris.Ship = self
 			newDebris.Pivot = visited[0].global_position
+			newDebris.Core = visited[0]
 			#Matches Debris velocity and angular velocity with ship
 			newDebris.linear_velocity = linear_velocity
 			newDebris.angular_velocity = angular_velocity

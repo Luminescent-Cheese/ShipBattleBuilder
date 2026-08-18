@@ -42,7 +42,7 @@ height = 8
 offsets = PackedFloat32Array(0, 0.44444445, 1)
 colors = PackedColorArray(1, 1, 1, 1, 1, 1, 0.33355117, 1, 1, 0.68235296, 0.1882353, 1)
 
-[node name="MiniGun" unique_id=243587431 groups=["Ship_tiles"] instance=ExtResource("1_pe00t")]
+[node name="MiniGun" unique_id=243587431 instance=ExtResource("1_pe00t")]
 
 [node name="GunLogic" type="Node2D" parent="." index="0" unique_id=931403881]
 script = ExtResource("2_puy3g")
@@ -87,4 +87,5 @@ initial_velocity_max = 166.66
 scale_amount_min = 0.5
 color_ramp = SubResource("Gradient_riqys")
 
+[connection signal="newInput" from="." to="GunLogic" method="_on_mini_gun_new_input"]
 [connection signal="timeout" from="ShotCooldown" to="GunLogic" method="_on_shot_cooldown_timeout"]
