@@ -2,9 +2,20 @@
 
 [ext_resource type="Script" uid="uid://ctn8ishhxhhui" path="res://debris.gd" id="1_e8eya"]
 
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_ov8td"]
+
 [node name="Debris" type="RigidBody2D" unique_id=1245159148]
 collision_layer = 4
 collision_mask = 4
+input_pickable = true
 linear_damp_mode = 1
 angular_damp_mode = 1
 script = ExtResource("1_e8eya")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=125654212]
+visible = false
+z_index = 2
+scale = Vector2(90.24121, 95.25098)
+texture = SubResource("PlaceholderTexture2D_ov8td")
+
+[connection signal="input_event" from="." to="." method="_on_input_event"]

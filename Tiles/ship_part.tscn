@@ -46,6 +46,7 @@ collision_mask = 9
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CheckIfValid" unique_id=1649036300]
 shape = SubResource("RectangleShape2D_bhunq")
+debug_color = Color(0.6090876, 0.5225567, 0.38368586, 0.41960785)
 
 [node name="SurroundingTileCheck" type="Node2D" parent="." unique_id=574259571]
 script = ExtResource("3_w2bqs")

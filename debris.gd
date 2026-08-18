@@ -8,7 +8,10 @@ extends RigidBody2D
 func _ready() -> void:
 	var force_dir = global_position.direction_to(Ship.global_position) * 10000
 	apply_force(force_dir,Pivot)
+	calculate_center_of_mass()
 
+func _process(delta: float) -> void:
+	$Sprite2D.position = Vector2.ZERO
 
 func recalculate_all_neighbors():
 	for child in get_children():
@@ -74,6 +77,7 @@ func calculate_debris(startTile):
 					collisionObject = get_node(collisionShapeName)
 					collisionObject.reparent(newDebris)
 				else:
+					pass
 					print("Collision Shape not found")
 			newDebris.Ship = self
 			newDebris.Pivot = visited[0].global_position
@@ -83,3 +87,9 @@ func calculate_debris(startTile):
 			newDebris.angular_velocity = angular_velocity
 			add_sibling(newDebris)
 	calculate_center_of_mass()
+
+
+func _on_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
+	if event is InputEventMouseButton:
+		print(get_children())
+		print("-------------------------------------------------------------------------------------------------------------------------------------------------------------------------")
