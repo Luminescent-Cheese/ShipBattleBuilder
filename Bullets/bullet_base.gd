@@ -6,6 +6,7 @@ extends CharacterBody2D
 @export var parentVelocity: Vector2 = Vector2.ZERO
 func _ready() -> void:
 	$"Bullet Sprite".visible = false
+	$"Bullet Collision".disabled = true
 func _physics_process(delta: float) -> void:
 	velocity = (SPEED * shoot_dir)+ parentVelocity
 	move_and_slide()
@@ -16,3 +17,4 @@ func _on_deletion_timer_timeout() -> void:
 
 func _on_apperance_timer_timeout() -> void:
 	$"Bullet Sprite".visible = true
+	$"Bullet Collision".disabled = false

@@ -145,6 +145,8 @@ func recalculate_all_neighbors():
 			child.SurrondingCheckCode.check_neighbors()
 
 func calculate_debris(startTile):
+	if startTile == Core:
+		print("oop")
 	var routes = startTile.tileNeighbors
 	#Delete startingTiles CollisionShape2D
 	var startCollisionShapeName = str(startTile.name) + "collisionShape"
@@ -178,9 +180,11 @@ func calculate_debris(startTile):
 				var collisionShapeName = str(tile.name) + "collisionShape"
 				collisionShapeName = collisionShapeName.replace("@","_")
 				if get_node(collisionShapeName) in get_children():
+					print(get_node(collisionShapeName))
 					collisionObject = get_node(collisionShapeName)
 					collisionObject.reparent(newDebris)
 				else:
+					pass
 					print("Collision Shape not found")
 			newDebris.Ship = self
 			newDebris.Pivot = visited[0].global_position

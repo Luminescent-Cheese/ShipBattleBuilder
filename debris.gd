@@ -34,6 +34,11 @@ func calculate_center_of_mass():
 	
 func calculate_debris(startTile):
 	var routes = startTile.tileNeighbors
+	if startTile == Core:
+		if routes.size() >= 1:
+			Core = routes[0]
+		else:
+			return
 	#Delete startingTiles CollisionShape2D
 	var startCollisionShapeName = str(startTile.name) + "collisionShape"
 	startCollisionShapeName = startCollisionShapeName.replace("@","_")

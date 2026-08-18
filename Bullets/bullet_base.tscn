@@ -14,9 +14,9 @@ fill_to = Vector2(0.8304348, 0.13913043)
 [sub_resource type="CircleShape2D" id="CircleShape2D_bhunq"]
 radius = 19.026299
 
-[node name="BulletBase" type="CharacterBody2D" unique_id=1000176563]
-collision_layer = 0
-collision_mask = 2
+[node name="BulletBase" type="CharacterBody2D" unique_id=1000176563 groups=["Bullets"]]
+collision_layer = 8
+collision_mask = 0
 script = ExtResource("1_kexa8")
 
 [node name="Bullet Sprite" type="Sprite2D" parent="." unique_id=684335031]

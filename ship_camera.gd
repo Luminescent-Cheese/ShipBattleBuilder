@@ -35,5 +35,5 @@ func zoom_in():
 		targetZoom += Vector2(.05,.05)
 
 func zoom_out():
-	if targetZoom > Vector2(.25,.25):
+	if targetZoom > Vector2(.15,.15):
 		targetZoom -= Vector2(.05,.05)

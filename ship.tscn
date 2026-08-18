@@ -25,6 +25,8 @@ bg_color = Color(0.8692163, 0.37501356, 3.85046e-07, 1)
 border_color = Color(0.8557532, 0.37060598, 1.732707e-06, 1)
 
 [node name="Ship" type="RigidBody2D" unique_id=1069543584]
+collision_layer = 4
+collision_mask = 4
 mass = 10.0
 gravity_scale = 0.0
 center_of_mass_mode = 1

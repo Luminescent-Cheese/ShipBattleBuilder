@@ -3,8 +3,10 @@ extends Node2D
 var TILE_WIDTH
 @export var placeable = true
 @export var thrustStrength = 7500
+@export var tileHealth = 2
 @onready var clickable = false
 @onready var overlap = false
+
 @onready var tileSprite = $BaseShipSprite
 @onready var SurrondingCheckTimer = $SurroundingTileCheck/SurrondingCheckTimer
 @onready var SurrondingCheckCode = $SurroundingTileCheck
@@ -22,6 +24,9 @@ func _ready() -> void:
 
 func _process(delta: float) -> void:
 	place()
+	if tileHealth <= 0:
+		tileHealth = 9999
+		destroy_tile()
 
 func on_button_pressed(event):
 	newInput.emit(event)
@@ -57,13 +62,10 @@ func _on_thruster_forces_thrust(ThrustDirection) -> void:
 
 
 func _on_check_if_valid_body_entered(body: Node2D) -> void:
-	if placeable:
-		overlap = true
-
-
-func _on_check_if_valid_body_exited(body: Node2D) -> void:
-	if placeable:
-		overlap = false
+#for tiles getting shot
+	if body.is_in_group("Bullets"):
+		tileHealth -= 1
+		body.queue_free()
 
 #checks if its been clicked
 func _on_check_if_valid_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
@@ -93,3 +95,13 @@ func _on_clicked() -> void:
 
 func _on_explosion_finished() -> void:
 	queue_free()
+
+
+func _on_check_if_valid_area_shape_entered(area_rid: RID, area: Area2D, area_shape_index: int, local_shape_index: int) -> void:
+	if placeable:
+		overlap = true
+
+
+func _on_check_if_valid_area_shape_exited(area_rid: RID, area: Area2D, area_shape_index: int, local_shape_index: int) -> void:
+	if placeable:
+		overlap = false

@@ -42,6 +42,7 @@ texture_filter = 1
 texture = ExtResource("2_hd3e3")
 
 [node name="CheckIfValid" type="Area2D" parent="." unique_id=815796589]
+collision_mask = 9
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CheckIfValid" unique_id=1649036300]
 shape = SubResource("RectangleShape2D_bhunq")
@@ -110,8 +111,9 @@ scale_amount_curve = SubResource("Curve_peb2t")
 color_ramp = SubResource("Gradient_hd3e3")
 
 [connection signal="clicked" from="." to="." method="_on_clicked"]
+[connection signal="area_shape_entered" from="CheckIfValid" to="." method="_on_check_if_valid_area_shape_entered"]
+[connection signal="area_shape_exited" from="CheckIfValid" to="." method="_on_check_if_valid_area_shape_exited"]
 [connection signal="body_entered" from="CheckIfValid" to="." method="_on_check_if_valid_body_entered"]
-[connection signal="body_exited" from="CheckIfValid" to="." method="_on_check_if_valid_body_exited"]
 [connection signal="input_event" from="CheckIfValid" to="." method="_on_check_if_valid_input_event"]
 [connection signal="timeout" from="SurroundingTileCheck/SurrondingCheckTimer" to="SurroundingTileCheck" method="_on_timer_timeout"]
 [connection signal="finished" from="Explosion" to="." method="_on_explosion_finished"]
