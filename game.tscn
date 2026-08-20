@@ -2,6 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://d1ijkjsfx8hci" path="res://ship.tscn" id="1_80nbo"]
 [ext_resource type="PackedScene" uid="uid://bnevfjofnucor" path="res://background.tscn" id="2_e2o6t"]
+[ext_resource type="PackedScene" uid="uid://cu6xrah5f0hb3" path="res://enemy_base.tscn" id="3_feb5d"]
 
 [sub_resource type="Environment" id="Environment_bhunq"]
 background_mode = 3
@@ -19,3 +20,6 @@ environment = SubResource("Environment_bhunq")
 [node name="Background" parent="." unique_id=1596054801 instance=ExtResource("2_e2o6t")]
 
 [node name="Ship" parent="." unique_id=1069543584 instance=ExtResource("1_80nbo")]
+
+[node name="EnemyBase" parent="." unique_id=301915439 instance=ExtResource("3_feb5d")]
+position = Vector2(486, -1315)

@@ -47,7 +47,7 @@ texture = ExtResource("2_v4325")
 
 [node name="Core" parent="." unique_id=243587431 instance=ExtResource("4_78o8j")]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=228976419]
+[node name="CorecollisionShape" type="CollisionShape2D" parent="." unique_id=228976419]
 shape = SubResource("RectangleShape2D_riqys")
 
 [node name="Hud" type="CanvasLayer" parent="." unique_id=1224294211]

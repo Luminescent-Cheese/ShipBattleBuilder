@@ -1,0 +1,73 @@
+[gd_scene format=3 uid="uid://cu6xrah5f0hb3"]
+
+[ext_resource type="Script" uid="uid://d0s5daw3pnk1t" path="res://enemy_base.gd" id="1_8nqel"]
+[ext_resource type="PackedScene" uid="uid://bnvbyi3c63nr1" path="res://Tiles/ship_part.tscn" id="2_41lhp"]
+[ext_resource type="PackedScene" uid="uid://csp1rv8jier8p" path="res://Tiles/core.tscn" id="3_qqe8e"]
+[ext_resource type="PackedScene" uid="uid://cjx5kmjalasat" path="res://Tiles/fuel_tile.tscn" id="4_ehd03"]
+[ext_resource type="PackedScene" uid="uid://bqt8aindfhcmj" path="res://Tiles/thruster.tscn" id="5_vop6o"]
+[ext_resource type="PackedScene" uid="uid://cqo60w4va4ss2" path="res://Tiles/mini_gun.tscn" id="6_qqe8e"]
+
+[node name="EnemyBase" type="RigidBody2D" unique_id=301915439]
+collision_layer = 4
+collision_mask = 4
+script = ExtResource("1_8nqel")
+
+[node name="ShipPart7" parent="." unique_id=243587431 instance=ExtResource("2_41lhp")]
+position = Vector2(-256, 128)
+
+[node name="Core" parent="." unique_id=1861058299 instance=ExtResource("3_qqe8e")]
+
+[node name="FuelTile" parent="." unique_id=936455702 instance=ExtResource("4_ehd03")]
+position = Vector2(0, 128)
+
+[node name="FuelTile2" parent="." unique_id=38930890 instance=ExtResource("4_ehd03")]
+position = Vector2(128, 128)
+
+[node name="FuelTile3" parent="." unique_id=487079044 instance=ExtResource("4_ehd03")]
+position = Vector2(-128, 128)
+
+[node name="FuelTile4" parent="." unique_id=606587332 instance=ExtResource("4_ehd03")]
+position = Vector2(0, -128)
+
+[node name="ShipPart" parent="." unique_id=552054588 instance=ExtResource("2_41lhp")]
+position = Vector2(128, 0)
+
+[node name="ShipPart2" parent="." unique_id=1998736918 instance=ExtResource("2_41lhp")]
+position = Vector2(-128, 0)
+
+[node name="ShipPart3" parent="." unique_id=612285744 instance=ExtResource("2_41lhp")]
+position = Vector2(128, -128)
+
+[node name="ShipPart4" parent="." unique_id=1886658639 instance=ExtResource("2_41lhp")]
+position = Vector2(-128, -128)
+
+[node name="ShipPart5" parent="." unique_id=448174511 instance=ExtResource("2_41lhp")]
+position = Vector2(0, -256)
+
+[node name="ShipPart6" parent="." unique_id=1353175718 instance=ExtResource("2_41lhp")]
+position = Vector2(256, 128)
+
+[node name="Thruster" parent="." unique_id=713508415 instance=ExtResource("5_vop6o")]
+position = Vector2(0, 256)
+
+[node name="Thruster2" parent="." unique_id=1740882701 instance=ExtResource("5_vop6o")]
+position = Vector2(-128, 256)
+
+[node name="Thruster3" parent="." unique_id=736049062 instance=ExtResource("5_vop6o")]
+position = Vector2(128, 256)
+
+[node name="Thruster4" parent="." unique_id=1963205488 instance=ExtResource("5_vop6o")]
+position = Vector2(-128, -256)
+rotation = 1.5707964
+
+[node name="Thruster5" parent="." unique_id=1229412267 instance=ExtResource("5_vop6o")]
+position = Vector2(128, -256)
+rotation = -1.5707964
+
+[node name="MiniGun" parent="." unique_id=39824404 instance=ExtResource("6_qqe8e")]
+position = Vector2(-256, 0)
+rotation = 3.1415927
+
+[node name="MiniGun2" parent="." unique_id=1701446696 instance=ExtResource("6_qqe8e")]
+position = Vector2(256, 0)
+rotation = 3.1415927

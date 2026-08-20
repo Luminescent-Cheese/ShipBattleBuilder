@@ -86,12 +86,6 @@ func destroy_tile():
 	get_parent().calculate_debris(self)
 	$Explosion.emitting = true
 	$BaseShipSprite.visible = false
-	
-func _on_clicked() -> void:
-	#TEST CODE for damage
-	if Input.is_action_pressed("Launch"):
-		destroy_tile()
-
 
 func _on_explosion_finished() -> void:
 	queue_free()
