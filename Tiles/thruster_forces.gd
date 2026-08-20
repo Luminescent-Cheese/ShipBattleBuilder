@@ -11,19 +11,22 @@ var WaitKey = false
 
 var LastKey: String
 
-func decide_activation_key() -> void:
-	if snappedf(Thruster.rotation,0.01) == 0:
-		ActivationKey = "W"
-	elif snappedf(Thruster.rotation,0.01) == snappedf((3*PI)/2,0.01):
-		ActivationKey = "A"
-	elif snappedf(Thruster.rotation,0.01) == snappedf(PI/2,0.01):
-		ActivationKey = "D"
-	elif snappedf(Thruster.rotation,0.01) == snappedf(PI,0.01):
-		ActivationKey = "S"
+func decide_activation_key(setActivationKey) -> void:
+	if setActivationKey == "~":
+		if snappedf(Thruster.rotation,0.01) == 0:
+			ActivationKey = "W"
+		elif snappedf(Thruster.rotation,0.01) == snappedf((3*PI)/2,0.01):
+			ActivationKey = "A"
+		elif snappedf(Thruster.rotation,0.01) == snappedf(PI/2,0.01):
+			ActivationKey = "D"
+		elif snappedf(Thruster.rotation,0.01) == snappedf(PI,0.01):
+			ActivationKey = "S"
+	else:
+		ActivationKey = setActivationKey
 
 func _on_thruster_just_placed() -> void:
 	#Activates whenever the piece is just pressed. Decides starting key based off of rotation
-	decide_activation_key()
+	decide_activation_key("~")
 
 
 func _on_thruster_clicked() -> void:
@@ -32,7 +35,7 @@ func _on_thruster_clicked() -> void:
 
 func _on_thruster_new_input(event: Variant) -> void:
 	LastKey = event
-	if get_parent().get_parent().name == "Ship":
+	if get_parent().get_parent().name == "Ship" or get_parent().get_parent().name == "EnemyBase":
 		if $"..".get_parent().fuel > 0 and get_parent().placeable == false:
 			if event == ActivationKey:
 				ThrustParticles.emitting = true

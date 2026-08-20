@@ -3,7 +3,7 @@ extends Node2D
 var TILE_WIDTH
 @export var placeable = true
 @export var thrustStrength = 7500
-@export var tileHealth = 2
+@export var tileHealth = 10
 @onready var clickable = false
 @onready var overlap = false
 

@@ -1,21 +1,51 @@
 extends RigidBody2D
 
+@onready var player = $"../Ship"
 @export var isLaunched: bool
-@export var fuel = 0
-@export var fuelMax = 0
+@export var fuel = 10
+@export var fuelMax = 10
 @onready var Core = $Core
 @onready var Debris = preload("res://debris.tscn")
 
 var force_dir = [Vector2.ZERO]
 var force_pos = [Vector2.ZERO]
 
+signal button_pressed(button)
+
 func _ready() -> void:
 	#adds collision shapes to all children
 	for child in get_children():
 		if child is Node2D:
 			child.placeable = false
+			button_pressed.connect(child.on_button_pressed)
+			child.thruster_on.connect(on_thrust)
 			add_collision_shape(child.position, child.name)
+			child.justPlaced.emit()
 
+func  _process(delta: float) -> void:
+	if Input.is_action_just_pressed("Launch"):
+		isLaunched = true
+	var angleToPlayer = global_position.angle_to_point(player.global_position) + (PI/2)
+	var distanceToPlayer =  global_position.distance_to(player.global_position)
+	if distanceToPlayer < 500:
+		button_pressed.emit("W")
+	if distanceToPlayer < 2000:
+		face_angle(angleToPlayer + (PI/2))
+		if snappedf(rotation, 1) == snappedf(angleToPlayer + (PI/2),1):
+			button_pressed.emit("W")
+	else:
+		face_angle(angleToPlayer)
+		if snappedf(rotation, 1) == snappedf(angleToPlayer,1):
+			button_pressed.emit("Space")
+			button_pressed.emit("W")
+	if snappedf(rotation, 1) == snappedf(angleToPlayer,1) and distanceToPlayer < 3000:
+		button_pressed.emit("Space")
+
+func face_angle(goalAngle):
+	if goalAngle > rotation:
+		button_pressed.emit("D")
+	elif goalAngle < rotation:
+		button_pressed.emit("A")
 
 func on_thrust(force_direction,force_position) -> void:
 	if isLaunched:

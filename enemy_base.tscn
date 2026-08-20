@@ -11,6 +11,7 @@
 collision_layer = 4
 collision_mask = 4
 script = ExtResource("1_8nqel")
+isLaunched = true
 
 [node name="ShipPart7" parent="." unique_id=243587431 instance=ExtResource("2_41lhp")]
 position = Vector2(-256, 128)
@@ -62,7 +63,7 @@ rotation = 1.5707964
 
 [node name="Thruster5" parent="." unique_id=1229412267 instance=ExtResource("5_vop6o")]
 position = Vector2(128, -256)
-rotation = -1.5707964
+rotation = 4.712389
 
 [node name="MiniGun" parent="." unique_id=39824404 instance=ExtResource("6_qqe8e")]
 position = Vector2(-256, 0)

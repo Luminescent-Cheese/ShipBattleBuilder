@@ -8,7 +8,7 @@ extends Node2D
 @onready var lastPos = global_position
 @onready var currentPos = global_position
 
-var frameDelta
+@onready var frameDelta = Vector2.ZERO
 func _process(delta: float) -> void:
 	lastPos = currentPos
 	currentPos = global_position

@@ -26,7 +26,7 @@ fill_from = Vector2(0.4826087, 0.49565217)
 [node name="FarLayer" type="Parallax2D" parent="." unique_id=838584689]
 scroll_scale = Vector2(0.2, 0.2)
 repeat_size = Vector2(2048, 2048)
-repeat_times = 6
+repeat_times = 7
 
 [node name="BackgroundColor" type="ColorRect" parent="FarLayer" unique_id=260619752]
 offset_right = 2067.0
@@ -41,7 +41,7 @@ texture = ExtResource("1_i7s6n")
 [node name="MidLayer" type="Parallax2D" parent="." unique_id=749372637]
 scroll_scale = Vector2(0.25, 0.25)
 repeat_size = Vector2(4096, 5096)
-repeat_times = 2
+repeat_times = 3
 
 [node name="Sprite2D" type="Sprite2D" parent="MidLayer" unique_id=2105725796]
 modulate = Color(1.2742168, 1.2742168, 1.2742168, 1)
@@ -50,7 +50,7 @@ texture = ExtResource("2_i7s6n")
 
 [node name="DustLayerOne" type="Parallax2D" parent="." unique_id=1574505860]
 repeat_size = Vector2(1024, 1024)
-repeat_times = 8
+repeat_times = 15
 
 [node name="Sprite2D" type="Sprite2D" parent="DustLayerOne" unique_id=1110249388]
 position = Vector2(1186, 1012.99994)
@@ -70,7 +70,7 @@ texture = SubResource("GradientTexture2D_bhunq")
 [node name="DustLayerTwo" type="Parallax2D" parent="." unique_id=1033206157]
 scroll_scale = Vector2(0.8, 0.8)
 repeat_size = Vector2(2048, 2048)
-repeat_times = 4
+repeat_times = 7
 
 [node name="Sprite2D" type="Sprite2D" parent="DustLayerTwo" unique_id=448740916]
 position = Vector2(1274.0001, 941.99994)
